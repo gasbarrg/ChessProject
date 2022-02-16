@@ -1,4 +1,4 @@
-package W22Project2ChessGIVETOSTUDENTS;
+package chess;
 
 public class Knight extends ChessPiece {
 
