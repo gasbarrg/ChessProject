@@ -17,11 +17,23 @@ public abstract class ChessPiece implements IChessPiece {
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		boolean valid = false;
 
-		//  THIS IS A START... More coding needed
-		
-		if (((move.fromRow == move.toRow) && (move.fromColumn == move.toColumn)) == false)
-			return valid;
+		//Check that piece is inside board
+		if(move.fromRow > 8 && move.toColumn > 8)
+			return false;
 
+		//Verify this piece is located at [move.fromRow, move.fromColumn] on the board.
+		if(!(this == board[move.fromRow][move.fromColumn]))
+			return false;
+
+		//Verify that the board at location [move.toRow, move.toColumn]
+		//does not contain a piece belonging to the same player
+		//TODO
+
+		//Check that the piece is not in the same position
+		if (!((move.fromRow == move.toRow) && (move.fromColumn == move.toColumn)))
+			return true;
+
+		//All other cases, return false
 		return false;
 	}
 }

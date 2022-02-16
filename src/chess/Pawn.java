@@ -1,4 +1,4 @@
-package W22Project2ChessGIVETOSTUDENTS;
+package chess;
 
 public class Pawn extends ChessPiece {
 
@@ -10,11 +10,18 @@ public class Pawn extends ChessPiece {
 		return "Pawn";
 	}
 
+
 	// determines if the move is valid for a pawn piece
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-
 		boolean valid = true;
-        // More code is needed
+
+		//Verify is a generally valid move
+        if(!(this.isValidMove(move, board)))
+			valid = false;
+
+		//Check for valid Pawn move
+
+
 		return valid;
 	}
 }
