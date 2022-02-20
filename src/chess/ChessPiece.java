@@ -27,13 +27,15 @@ public abstract class ChessPiece implements IChessPiece {
 
 		//Verify that the board at location [move.toRow, move.toColumn]
 		//does not contain a piece belonging to the same player
-		//TODO
+		if ( board[move.toRow][move.toColumn] != null &&
+				board[move.toRow][move.toColumn].player() == owner )
+			return false;
 
 		//Check that the piece is not in the same position
-		if (!((move.fromRow == move.toRow) && (move.fromColumn == move.toColumn)))
-			return true;
+		if (((move.fromRow == move.toRow) && (move.fromColumn == move.toColumn)))
+			return false;
 
 		//All other cases, return false
-		return false;
+		return true;
 	}
 }
