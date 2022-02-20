@@ -15,10 +15,9 @@ public abstract class ChessPiece implements IChessPiece {
 	}
 
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		boolean valid = false;
 
 		//Check that piece is inside board
-		if(move.fromRow > 8 && move.toColumn > 8)
+		if(move.toRow > 8 || move.toColumn > 8)
 			return false;
 
 		//Verify this piece is located at [move.fromRow, move.fromColumn] on the board.
