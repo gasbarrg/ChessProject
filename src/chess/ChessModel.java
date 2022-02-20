@@ -73,7 +73,7 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * just a test
-	 * cat dog frog turtle
+	 * Updated 
 	 */
 	public void AI() {
 		/*
