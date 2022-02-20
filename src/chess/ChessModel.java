@@ -73,6 +73,8 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * just a test
+	 * Gabes comment line
+	 *
 	 */
 	public void AI() {
 		/*
