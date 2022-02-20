@@ -73,10 +73,14 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * just a test
+<<<<<<< Updated upstream
 	 * test
 	 * test
 	 * test
 	 *
+=======
+	 * Gabe Override
+>>>>>>> Stashed changes
 	 */
 	public void AI() {
 		/*
