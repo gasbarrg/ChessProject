@@ -3,6 +3,7 @@ package chess;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
 
 public class ChessPanel extends JPanel {
 
@@ -90,12 +91,13 @@ public class ChessPanel extends JPanel {
 
     private void createIcons() {
         // Sets the Image for white player pieces
-        wRook = new ImageIcon("./src/chess/wRook.png");
-        wBishop = new ImageIcon("./src/chess/wBishop.png");
-        wQueen = new ImageIcon("./src/chess/wQueen.png");
-        wKing = new ImageIcon("./src/chess/wKing.png");
-        wPawn = new ImageIcon("./src/chess/wPawn.png");
-        wKnight = new ImageIcon("./src/chess/wKnight.png");
+        String path = System.getProperty("user.dir");
+        wRook = new ImageIcon(path + "./src/chess/wRook.png");
+        wBishop = new ImageIcon(path + "./src/chess/wBishop.png");
+        wQueen = new ImageIcon(path + "./src/chess/wQueen.png");
+        wKing = new ImageIcon(path + "./src/chess/wKing.png");
+        wPawn = new ImageIcon(path + "./src/chess/wPawn.png");
+        wKnight = new ImageIcon(path + "./src/chess/wKnight.png");
     }
 
     // method that updates the board
