@@ -32,7 +32,7 @@ public class Pawn extends ChessPiece {
 			//Allows the piece to move forward one space
 			if (move.toRow + 1 == move.fromRow && move.toColumn == move.fromColumn) {
 				//Looks to see if chess piece already in spot trying to be moved to
-				if (board[move.toRow][move.toColumn] != null) {
+				if (board[move.toRow][move.toColumn] == null) {
 					return true;
 				}
 			}
@@ -63,7 +63,7 @@ public class Pawn extends ChessPiece {
 			//Allows the piece to move forward one space
 			if (move.toRow - 1 == move.fromRow && move.toColumn == move.fromColumn) {
 				//Looks to see if chess piece already in spot trying to be moved to
-				if (board[move.toRow][move.toColumn] != null) {
+				if (board[move.toRow][move.toColumn] == null) {
 					return true;
 				}
 			}
