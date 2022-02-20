@@ -73,7 +73,6 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * just a test
-	 * Testing the overRide 
 	 * test
 	 * test
 	 * test
