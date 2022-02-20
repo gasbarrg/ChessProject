@@ -1,4 +1,4 @@
-package W22Project2ChessGIVETOSTUDENTS;
+package chess;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -90,12 +90,12 @@ public class ChessPanel extends JPanel {
 
     private void createIcons() {
         // Sets the Image for white player pieces
-        wRook = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wRook.png");
-        wBishop = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wBishop.png");
-        wQueen = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wQueen.png");
-        wKing = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wKing.png");
-        wPawn = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wPawn.png");
-        wKnight = new ImageIcon("./src/W22Project2ChessGIVETOSTUDENTS/wKnight.png");
+        wRook = new ImageIcon("./src/chess/wRook.png");
+        wBishop = new ImageIcon("./src/chess/wBishop.png");
+        wQueen = new ImageIcon("./src/chess/wQueen.png");
+        wKing = new ImageIcon("./src/chess/wKing.png");
+        wPawn = new ImageIcon("./src/chess/wPawn.png");
+        wKnight = new ImageIcon("./src/chess/wKnight.png");
     }
 
     // method that updates the board

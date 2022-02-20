@@ -4,8 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPiece.java" afterDir="false" />
+    <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/ChessGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bBishop.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bKing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bKnight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bPawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bPawn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bQueen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/bRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bRook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wBishop.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wKing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wKnight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wPawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wPawn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wQueen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/wRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wRook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +52,26 @@
       <recent name="C:\Users\Gasba\Documents\@CIS 163-05 Computer Science 2\Project2\src\chess" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="ChessGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chess.ChessGUI" />
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChessGUI" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -41,6 +81,21 @@
       <option name="presentableId" value="Default" />
       <updated>1644540320254</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated chess piece">
+      <created>1645387189552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1645387189552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update">
+      <created>1645387368192</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1645387368192</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -53,5 +108,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated chess piece" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>
