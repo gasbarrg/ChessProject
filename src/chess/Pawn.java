@@ -13,15 +13,81 @@ public class Pawn extends ChessPiece {
 
 	// determines if the move is valid for a pawn piece
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		boolean valid = true;
 
 		//Verify is a generally valid move
-        if(!(this.isValidMove(move, board)))
-			valid = false;
+		if (!(super.isValidMove(move, board)))
+			return false;
 
-		//Check for valid Pawn move
+		// Check for valid Pawn move
 
 
-		return valid;
+		//todo regular capture
+
+		//todo move
+
+		//todo first move
+		if (this.player() == Player.WHITE) {
+			//Allows you to move diagonally up and over one piece to capture
+			if (((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
+					((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
+				//Looks to see if other player is there so move can be accomplished
+				if (board[move.toRow][move.toColumn].player() == Player.BLACK) {
+					return true;
+				}
+			}
+			//Allows the piece to move forward one space
+			if (move.toRow + 1 == move.fromRow && move.toColumn == move.fromColumn) {
+				//Looks to see if chess piece already in spot trying to be moved to
+				if (board[move.toRow][move.toColumn] != null) {
+					return true;
+				}
+			}
+			//If in row 6 it's the pawns first move, so it can move one or two if it wants
+			if (move.fromRow == 6) {
+				if ((move.toRow + 1 == move.fromRow && move.toColumn == move.fromColumn)) {
+					if (board[move.toRow][move.toColumn] == null) {
+						return true;
+					}
+				}
+				if ((move.toRow + 2 == move.fromRow && move.toColumn == move.fromColumn)) {
+					if (board[5][move.fromColumn] == null && board[4][move.fromColumn] == null) {
+						return true;
+					}
+				}
+			}
+
+		}
+		else if (this.player() == Player.BLACK) {
+			//Allows you to move diagonally down and over one piece to capture
+			if (((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
+					((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
+				//Looks to see if other player is there so move can be accomplished
+				if (board[move.toRow][move.toColumn].player() == Player.WHITE) {
+					return true;
+				}
+			}
+			//Allows the piece to move forward one space
+			if (move.toRow - 1 == move.fromRow && move.toColumn == move.fromColumn) {
+				//Looks to see if chess piece already in spot trying to be moved to
+				if (board[move.toRow][move.toColumn] != null) {
+					return true;
+				}
+			}
+			//If in row 6 it's the pawns first move, so it can move one or two if it wants
+			if (move.fromRow == 1) {
+				if ((move.toRow - 1 == move.fromRow && move.toColumn == move.fromColumn)) {
+					if (board[move.toRow][move.toColumn] == null) {
+						return true;
+					}
+				}
+				if ((move.toRow - 2 == move.fromRow && move.toColumn == move.fromColumn)) {
+					if (board[2][move.fromColumn] == null && board[3][move.fromColumn] == null) {
+						return true;
+					}
+				}
+			}
+
+		}
+		return false;
 	}
 }
