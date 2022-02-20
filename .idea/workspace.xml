@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/ChessGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bBishop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bKing.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bKnight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bPawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bPawn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bQueen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/bRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/bRook.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wBishop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wKing.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wKnight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wPawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wPawn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wQueen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/wRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/wRook.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/Pawn.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
