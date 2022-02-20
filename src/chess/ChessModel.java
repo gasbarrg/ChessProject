@@ -73,7 +73,7 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * just a test
-	 * does it override the github here
+	 * gabes line 
 	 */
 	public void AI() {
 		/*
