@@ -1,19 +1,18 @@
-package W22Project2ChessGIVETOSTUDENTS;
+package chess;
 
-public class Bishop extends ChessPiece {
+public class King extends ChessPiece {
 
-	public Bishop(Player player) {
+	public King(Player player) {
 		super(player);
 	}
 
 	public String type() {
-		return "Bishop";
+		return "King";
 	}
 	
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-
-		return true;
+		boolean valid = true;
         // More code is needed
-		
+		return valid;
 	}
 }
