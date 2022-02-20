@@ -71,18 +71,7 @@ public class ChessModel implements IChessModel {
 	}
 
 
-	/**
-	 * just a test
-	 * test
-	 * test
-	 * test
-	 *
-	 * Gabe Override
-<<<<<<< Updated upstream
-=======
-	 * Justin Override
->>>>>>> Stashed changes
-	 */
+
 	public void AI() {
 		/*
 		 * Write a simple AI set of rules in the following order. 
