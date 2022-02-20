@@ -70,6 +70,10 @@ public class ChessModel implements IChessModel {
 		board[row][column] = piece;
 	}
 
+
+	/**
+	 * just a test
+	 */
 	public void AI() {
 		/*
 		 * Write a simple AI set of rules in the following order. 
