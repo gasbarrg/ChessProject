@@ -24,7 +24,7 @@ public class ChessModel implements IChessModel {
 			board[6][i] = new Pawn(Player.WHITE);
 
 
-		/*//Initialize Black Pieces
+		//Initialize Black Pieces
 		board[0][0] = new Rook(Player.BLACK);
 		board[0][1] = new Knight(Player.BLACK);
 		board[0][2] = new Bishop(Player.BLACK);
@@ -34,7 +34,7 @@ public class ChessModel implements IChessModel {
 		board[0][6] = new Knight (Player.BLACK);
 		board[0][7] = new Rook(Player.BLACK);
 		for(int i = 0; i < 8; i++)
-			board[1][i] = new Pawn(Player.BLACK);*/
+			board[1][i] = new Pawn(Player.BLACK);
 	}
 
 	public boolean isComplete() {
