@@ -12,9 +12,6 @@ public class King extends ChessPiece {
 
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		// More code is needed
-
-		//For now, return false
-
 		if (this.player() == Player.WHITE) {
 			if (move.toRow + 1 == move.fromRow || move.toRow - 1 == move.fromRow ||
 					move.toColumn + 1 == move.fromColumn || move.toColumn - 1 == move.fromColumn) {
