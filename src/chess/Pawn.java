@@ -20,12 +20,6 @@ public class Pawn extends ChessPiece {
 
 		// Check for valid Pawn move
 
-
-		//todo regular capture
-
-		//todo move
-
-		//todo first move
 		if (this.player() == Player.WHITE) {
 			//Allows you to move diagonally up and over one piece to capture
 			if (((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
@@ -73,7 +67,7 @@ public class Pawn extends ChessPiece {
 					return true;
 				}
 			}
-			//If in row 6 it's the pawns first move, so it can move one or two if it wants
+			//If in row 1 it's the pawns first move, so it can move one or two if it wants
 			if (move.fromRow == 1) {
 				if ((move.toRow - 1 == move.fromRow && move.toColumn == move.fromColumn)) {
 					if (board[move.toRow][move.toColumn] == null) {
