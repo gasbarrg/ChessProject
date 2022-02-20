@@ -16,23 +16,18 @@ public class Rook extends ChessPiece {
 		if(move.fromRow != move.toRow && move.fromColumn != move.toColumn)
 			return false;
 
-		//Verify square is occupied by opponents piece
-		if(board[move.toRow][move.toColumn] != null &&
-				board[move.toRow][move.toColumn].player() == this.player())
-			return false;
-
 		//Verify no pieces between
 		if(this.player() == Player.WHITE){
 			//Check for vertical movement:
 			if(move.fromColumn == move.toColumn && move.fromRow != move.toRow){
 				//If Vertical movement, check that there are no pieces DOWN
 				for(int row = move.fromRow + 1; row < move.toRow; row++) {
-					if (board[row][move.fromColumn].player() != null) {
+					if (board[row][move.fromColumn] != null) {
 						return false;}
 				}
 				//If Vertical movement, check that there are no pieces UP
 				for(int row = move.fromRow - 1; row > move.toRow; row--) {
-					if (board[row][move.fromColumn].player() != null) {
+					if (board[row][move.fromColumn] != null) {
 						return false;}
 				}
 			}
@@ -40,12 +35,12 @@ public class Rook extends ChessPiece {
 			if(move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
 				//If horizontal movement, check that there are no pieces RIGHT
 				for(int col = move.fromColumn + 1; col < move.toColumn; col++) {
-					if (board[move.fromRow][col].player() != null) {
+					if (board[move.fromRow][col] != null) {
 						return false;}
 				}
 				//If horizontal movement, check that there are no pieces LEFT
 				for(int col = move.fromColumn - 1; col > move.toColumn; col--) {
-					if (board[move.fromRow][col].player() != null) {
+					if (board[move.fromRow][col] != null) {
 						return false;}
 				}
 			}
@@ -56,12 +51,12 @@ public class Rook extends ChessPiece {
 			if(move.fromColumn == move.toColumn && move.fromRow != move.toRow){
 				//If Vertical movement, check that there are no pieces DOWN
 				for(int row = move.fromRow - 1; row > move.toRow; row--) {
-					if (board[row][move.fromColumn].player() != null) {
+					if (board[row][move.fromColumn] != null) {
 						return false;}
 				}
 				//If Vertical movement, check that there are no pieces UP
 				for(int row = move.fromRow + 1; row < move.toRow; row++) {
-					if (board[row][move.fromColumn].player() != null) {
+					if (board[row][move.fromColumn] != null) {
 						return false;}
 				}
 			}
@@ -69,12 +64,12 @@ public class Rook extends ChessPiece {
 			if(move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
 				//If horizontal movement, check that there are no pieces RIGHT
 				for(int col = move.fromColumn + 1; col < move.toColumn; col++) {
-					if (board[move.fromRow][col].player() != null) {
+					if (board[move.fromRow][col] != null) {
 						return false;}
 				}
 				//If horizontal movement, check that there are no pieces LEFT
 				for(int col = move.fromColumn - 1; col > move.toColumn; col--) {
-					if (board[move.fromRow][col].player() != null) {
+					if (board[move.fromRow][col] != null) {
 						return false;}
 				}
 			}

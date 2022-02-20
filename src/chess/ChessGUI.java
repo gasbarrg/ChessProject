@@ -17,5 +17,6 @@ public class ChessGUI {
         frame.setPreferredSize(new Dimension(800, 637));
         frame.pack();
         frame.setVisible(true);
+
     }
 }
