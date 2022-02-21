@@ -45,7 +45,7 @@ public class King extends ChessPiece {
 				return true;
 			}
 		}
-
+// 			FIRST ATTEMPT AT THE CODE
 //			if (move.toRow + 1 == move.fromRow || move.toRow - 1 == move.fromRow ||
 //					move.toColumn + 1 == move.fromColumn || move.toColumn - 1 == move.fromColumn) {
 //				if ((board[move.toRow][move.toColumn] == null)) {
