@@ -7,8 +7,10 @@ import java.io.File;
 
 public class ChessPanel extends JPanel {
 
+    private JButton undo;
     private JButton[][] board;
     private ChessModel model;
+
 
     private ImageIcon wRook;
     private ImageIcon wBishop;
@@ -43,6 +45,7 @@ public class ChessPanel extends JPanel {
         JPanel buttonpanel = new JPanel();
         boardpanel.setLayout(new GridLayout(model.numRows(), model.numColumns(), 1, 1));
 
+
         for (int r = 0; r < model.numRows(); r++) {
             for (int c = 0; c < model.numColumns(); c++) {
                 if (model.pieceAt(r, c) == null) {
@@ -56,6 +59,11 @@ public class ChessPanel extends JPanel {
                 boardpanel.add(board[r][c]);
             }
         }
+        //Add Undo Button
+        undo = new JButton("UNDO", null);
+        buttonpanel.add(undo);
+        undo.addActionListener(listener);
+
         add(boardpanel, BorderLayout.WEST);
         boardpanel.setPreferredSize(new Dimension(600, 600));
         add(buttonpanel);
@@ -197,6 +205,7 @@ public class ChessPanel extends JPanel {
 
     /**
      * Sets Board back to default colors.
+     * Usually used to undo Highlights
      */
     private void recolorBoard(){
         for (int r = 0; r < 8; r++) {
@@ -205,6 +214,11 @@ public class ChessPanel extends JPanel {
         }
     }
 
+    /**
+     * Highlights all possible moves of a chess piece
+     * @param pRow
+     * @param pCol
+     */
     private void highlightMoves(int pRow, int pCol) {
         //Sets Selected Piece to GREEN
         board[pRow][pCol].setBackground(Color.GREEN.darker());
@@ -215,10 +229,32 @@ public class ChessPanel extends JPanel {
                     board[row][col].setBackground(Color.gray);}
         }
 
+    /**
+     * Undoes the last move
+      */
+    private void undoLast(){
+        if(model.moveList.size() < 1)
+            System.out.println("No Moves Left");
+        else {
+            //Get Last Move:
+            Move lastMove = model.moveList.get(model.moveList.size() - 1);
+            //Undo Last Move:
+            model.undoMove(lastMove);
+            //Remove Last 2 Moves from list
+            model.moveList.remove(lastMove);
+            displayBoard();
+        }
+    }
+
 
     // inner class that represents action listener for buttons
     private class listener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //Check for undo button:
+            if(undo == event.getSource())
+                undoLast();
+
+            //Check for each board spot:
             for (int r = 0; r < model.numRows(); r++)
                 for (int c = 0; c < model.numColumns(); c++)
                     if (board[r][c] == event.getSource())
@@ -233,7 +269,6 @@ public class ChessPanel extends JPanel {
                         else {
                             //Remove Highlights
                             recolorBoard();
-
                             toRow = r;
                             toCol = c;
                             firstTurnFlag = true;

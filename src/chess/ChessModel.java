@@ -1,6 +1,9 @@
 package chess;
 
-public class ChessModel implements IChessModel {	 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+
+public class ChessModel implements IChessModel {
     private IChessPiece[][] board;
 	private Player player;
 
@@ -12,7 +15,11 @@ public class ChessModel implements IChessModel {
 
 	/** Handles Temporary Move */
 	Move m;
+	/** Handles Undo Move */
+	Move undo;
 
+
+	public ArrayList<Move> moveList = new ArrayList<>();
 
 	/** Handles Board Size */
 	private final int BOARD_SIZE = 8;
@@ -58,7 +65,7 @@ public class ChessModel implements IChessModel {
 		boolean valid = false;
 
 		if (board[move.fromRow][move.fromColumn] != null)
-			if (board[move.fromRow][move.fromColumn].isValidMove(move, board) == true)
+			if (board[move.fromRow][move.fromColumn].isValidMove(move, board))
                 return true;
 
 		return valid;
@@ -68,11 +75,14 @@ public class ChessModel implements IChessModel {
 	public void move(Move move) {
 		board[move.toRow][move.toColumn] =  board[move.fromRow][move.fromColumn];
 		board[move.fromRow][move.fromColumn] = null;
+
+		//Store Move:
+		moveList.add(move);
 	}
 
 	/**
 	 * Report whether the current player p is in check.
-	 * @param  p {@link W18project3.Move} the Player being checked
+	 * @param  p {@link chess.Move} the Player being checked
 	 * @return {@code true} if the current player is in check, {@code false} otherwise.
 	 */
 	public boolean inCheck(Player p) {
@@ -151,7 +161,15 @@ public class ChessModel implements IChessModel {
 		board[row][column] = piece;
 	}
 
-
+	/**
+	 * Undoes a move.
+	 */
+	public void undoMove(Move move){
+			undo = new Move(move.toRow, move.toColumn, move.fromRow, move.fromColumn);
+			move(undo);
+			//Remove the "undo" move from the list
+			moveList.remove(moveList.get(moveList.size() - 1));
+	}
 
 	public void AI() {
 		/*
