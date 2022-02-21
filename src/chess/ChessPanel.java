@@ -195,24 +195,56 @@ public class ChessPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Sets Board back to default colors.
+     */
+    private void recolorBoard(){
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++)
+                setBackGroundColor(r, c);
+        }
+    }
+
+    private void highlightMoves(int pRow, int pCol) {
+        //Sets Selected Piece to GREEN
+        board[pRow][pCol].setBackground(Color.GREEN.darker());
+        //Highlights all possible moves
+        for (int row = 0; row < 8; row++)
+            for (int col = 0; col < 8; col++) {
+                if (model.isValidMove(new Move(pRow, pCol, row, col)))
+                    board[row][col].setBackground(Color.gray);}
+        }
+
+
     // inner class that represents action listener for buttons
     private class listener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             for (int r = 0; r < model.numRows(); r++)
                 for (int c = 0; c < model.numColumns(); c++)
                     if (board[r][c] == event.getSource())
+                        //First Click
                         if (firstTurnFlag == true) {
                             fromRow = r;
                             fromCol = c;
                             firstTurnFlag = false;
-                        } else {
+                            highlightMoves(r, c);
+                        }
+                        //Second Click
+                        else {
+                            //Remove Highlights
+                            recolorBoard();
+
                             toRow = r;
                             toCol = c;
                             firstTurnFlag = true;
                             Move m = new Move(fromRow, fromCol, toRow, toCol);
-                            if ((model.isValidMove(m)) == true) {
+                            if ((model.isValidMove(m))) {
                                 model.move(m);
                                 displayBoard();
+                                if (model.inCheck(Player.BLACK))
+                                    JOptionPane.showMessageDialog(null, "White - Check");
+                                if (model.inCheck(Player.WHITE))
+                                    JOptionPane.showMessageDialog(null, "Black - Check");
                             }
                         }
         }

@@ -10,6 +10,7 @@ public class King extends ChessPiece {
 		return "King";
 	}
 
+
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		// More code is needed
 		if (this.player() == Player.WHITE) {

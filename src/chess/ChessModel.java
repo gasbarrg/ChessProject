@@ -4,8 +4,19 @@ public class ChessModel implements IChessModel {
     private IChessPiece[][] board;
 	private Player player;
 
-	// declare other instance variables as needed
+
+	/** Handles King's Row Position */
+	int kRow;
+	/** Handles King's Column Position */
+	int kCol;
+
+	/** Handles Temporary Move */
+	Move m;
+
+
+	/** Handles Board Size */
 	private final int BOARD_SIZE = 8;
+
 
 	public ChessModel() {
 		board = new IChessPiece[8][8];
@@ -59,32 +70,83 @@ public class ChessModel implements IChessModel {
 		board[move.fromRow][move.fromColumn] = null;
 	}
 
+	/**
+	 * Report whether the current player p is in check.
+	 * @param  p {@link W18project3.Move} the Player being checked
+	 * @return {@code true} if the current player is in check, {@code false} otherwise.
+	 */
 	public boolean inCheck(Player p) {
-		boolean valid = false;
-		return valid;
+		//Get position of king
+		for(int row = 0; row < 8; row++) //Row Incrementation
+			for(int col = 0; col < 8; col++) { //Col incrementation
+				//Check Each position for a "King" Piece under player P
+				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
+						&& board[row][col].player() == p) {
+					//Assign to Kings pos.
+					kRow = row;
+					kCol = col;
+				}
+			}
+			//Check for a valid move to Kings position
+			for(int row = 0; row < 8; row++) //Row Incrementation
+				for(int col = 0; col < 8; col++) { //Col incrementation
+					if (board[row][col] != null){
+						//Make a new move to kings pos.
+						m = new Move(row, col, kRow, kCol);
+						//Check if move is valid
+						if (board[row][col].isValidMove(m, board))
+							return true;
+					}
+				}
+		//Else, return false.
+		return false;
 	}
 
-
+	/**Returns the current player
+	 * @return player
+	 */
 	public Player currentPlayer() {
 		return player;
 	}
 
+	/**
+	 * Returns number of rows
+	 * @return int
+	 */
 	public int numRows() {
-		return 8;
+		return BOARD_SIZE;
 	}
 
+	/**
+	 * Returns number of columns
+	 * @return int
+	 */
 	public int numColumns() {
-		return 8;
+		return BOARD_SIZE;
 	}
 
+	/**
+	 * Returns type of piece at location
+	 * @return IChessPiece
+	 */
 	public IChessPiece pieceAt(int row, int column) {		
 		return board[row][column];
 	}
 
+	/**
+	 * Sets current player to the next player by calling player.next()
+	 */
 	public void setNextPlayer() {
 		player = player.next();
 	}
 
+	/**
+	 * Places a piece of type "piece" at location row, column.
+	 *
+	 * @param row
+	 * @param column
+	 * @param piece
+	 */
 	public void setPiece(int row, int column, IChessPiece piece) {
 		board[row][column] = piece;
 	}

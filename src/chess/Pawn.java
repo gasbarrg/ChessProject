@@ -25,7 +25,7 @@ public class Pawn extends ChessPiece {
 			if (((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
 					((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
 				//Looks to see if other player is there so move can be accomplished
-				if (board[move.toRow][move.toColumn].player() != this.player()) {
+				if (board[move.toRow][move.toColumn] != null && board[move.toRow][move.toColumn].player() != this.player()) {
 					return true;
 				}
 			}
@@ -56,7 +56,7 @@ public class Pawn extends ChessPiece {
 			if (((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
 					((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
 				//Looks to see if other player is there so move can be accomplished
-				if (board[move.toRow][move.toColumn].player() != this.player()) {
+				if (board[move.toRow][move.toColumn] != null && board[move.toRow][move.toColumn].player() != this.player()) {
 					return true;
 				}
 			}
