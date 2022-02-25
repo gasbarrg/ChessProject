@@ -27,7 +27,7 @@ public class Bishop extends ChessPiece {
 
 
 		if (this.player() == Player.WHITE) {
-<<<<<<< Updated upstream
+/*<<<<<<< Updated upstream
 			for (int i = 0; i <= 7  ; i++) {
 				if ((move.toRow + i == move.fromRow && (move.toColumn + i == move.fromColumn))){
 					return true;
@@ -40,7 +40,7 @@ public class Bishop extends ChessPiece {
 				}
 				if ((move.toRow - i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
 					return true;
-=======
+=======*/
 			//Verify on a diagonal:
 			if (diagonal) {
 				//Check North-West Condition:
@@ -78,7 +78,6 @@ public class Bishop extends ChessPiece {
 						if(board[move.fromRow + m][move.fromColumn + m] != null)
 							return false;
 					return board[move.toRow][move.toColumn] != null || board[move.toRow][move.toColumn] == null;
->>>>>>> Stashed changes
 				}
 			}
 		}
