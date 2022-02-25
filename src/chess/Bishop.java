@@ -18,12 +18,16 @@ public class Bishop extends ChessPiece {
 
 		if (this.player() == Player.WHITE) {
 			for (int i = 0; i <= 7  ; i++) {
-				if ((move.toRow + i == move.fromRow && (move.toColumn + i == move.fromColumn)) ||
-						(move.toRow + i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
+				if ((move.toRow + i == move.fromRow && (move.toColumn + i == move.fromColumn))){
 					return true;
 				}
-				if ((move.toRow - i == move.fromRow && (move.toColumn + i == move.fromColumn)) ||
-						(move.toRow - i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
+				if ((move.toRow + i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
+					return true;
+				}
+				if ((move.toRow - i == move.fromRow && (move.toColumn + i == move.fromColumn))){
+					return true;
+				}
+				if ((move.toRow - i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
 					return true;
 				}
 			}
