@@ -27,20 +27,6 @@ public class Bishop extends ChessPiece {
 
 
 		if (this.player() == Player.WHITE) {
-/*<<<<<<< Updated upstream
-			for (int i = 0; i <= 7  ; i++) {
-				if ((move.toRow + i == move.fromRow && (move.toColumn + i == move.fromColumn))){
-					return true;
-				}
-				if ((move.toRow + i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
-					return true;
-				}
-				if ((move.toRow - i == move.fromRow && (move.toColumn + i == move.fromColumn))){
-					return true;
-				}
-				if ((move.toRow - i == move.fromRow && (move.toColumn  - i == move.fromColumn))) {
-					return true;
-=======*/
 			//Verify on a diagonal:
 			if (diagonal) {
 				//Check North-West Condition:
@@ -50,7 +36,7 @@ public class Bishop extends ChessPiece {
 					for (int m = 1; m < moves; m++)
 						if(board[move.fromRow - m][move.fromColumn - m] != null)
 							return false;
-					return board[move.toRow][move.toColumn] != null || board[move.toRow][move.toColumn] == null;
+					return true;
 				}
 				//Check North-East Condition:
 				if (NE) {
@@ -59,7 +45,7 @@ public class Bishop extends ChessPiece {
 					for (int m = 1; m < moves; m++)
 						if(board[move.fromRow - m][move.fromColumn + m] != null)
 							return false;
-					return board[move.toRow][move.toColumn] != null || board[move.toRow][move.toColumn] == null;
+					return true;
 				}
 				//Check South-West Condition:
 				if (SW) {
@@ -68,7 +54,7 @@ public class Bishop extends ChessPiece {
 					for (int m = 1; m < moves; m++)
 						if(board[move.fromRow + m][move.fromColumn - m] != null)
 							return false;
-					return board[move.toRow][move.toColumn] != null || board[move.toRow][move.toColumn] == null;
+					return true;
 				}
 				//Check South-East Condition:
 				if (SE) {
@@ -76,8 +62,8 @@ public class Bishop extends ChessPiece {
 					//Get clear path on SE direction:
 					for (int m = 1; m < moves; m++)
 						if(board[move.fromRow + m][move.fromColumn + m] != null)
-							return false;
-					return board[move.toRow][move.toColumn] != null || board[move.toRow][move.toColumn] == null;
+							return false; // <--- Return false if piece in the way
+					return true;
 				}
 			}
 		}
