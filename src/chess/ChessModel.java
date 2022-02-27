@@ -30,8 +30,6 @@ public class ChessModel implements IChessModel {
 		player = Player.WHITE;
 
 
-		board[4][6] = new Bishop(Player.WHITE);
-
 		//Initialize White Pieces
         board[7][0] = new Rook(Player.WHITE);
         board[7][1] = new Knight(Player.WHITE);

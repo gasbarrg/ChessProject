@@ -26,7 +26,6 @@ public class Bishop extends ChessPiece {
 		boolean diagonal = Math.abs(move.toRow - move.fromRow) == Math.abs(move.toColumn - move.fromColumn);
 
 
-		if (this.player() == Player.WHITE) {
 			//Verify on a diagonal:
 			if (diagonal) {
 				//Check North-West Condition:
@@ -62,17 +61,14 @@ public class Bishop extends ChessPiece {
 					//Get clear path on SE direction:
 					for (int m = 1; m < moves; m++)
 						if(board[move.fromRow + m][move.fromColumn + m] != null)
-							return false; // <--- Return false if piece in the way
+							return false;
 					return true;
 				}
 			}
-		}
 		//Else, return false 
 		return false;
-		// More code is needed
-
-
 	}
+
 }
 
 
