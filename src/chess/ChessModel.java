@@ -9,9 +9,11 @@ public class ChessModel implements IChessModel {
 
 
 	/** Handles King's Row Position */
+	int kRow;
 	int kRowBlack;
 	int kRowWhite;
 	/** Handles King's Column Position */
+	int kCol;
 	int kColBlack;
 	int kColWhite;
 
