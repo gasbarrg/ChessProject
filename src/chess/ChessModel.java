@@ -29,7 +29,7 @@ public class ChessModel implements IChessModel {
 	/** Handles Board Size */
 	private final int BOARD_SIZE = 8;
 
-	 /** prints out all chess pieces to board*/
+	 /** prints out all chess pieces to board */
 	public ChessModel() {
 		board = new IChessPiece[8][8];
 		player = Player.WHITE;

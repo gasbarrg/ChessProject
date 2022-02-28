@@ -20,7 +20,6 @@ public class Pawn extends ChessPiece {
 			return false;
 
 		// Check for valid Pawn move
-
 		if (this.player() == Player.WHITE) {
 			//Allows you to move diagonally up and over one piece to capture
 			if (((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
