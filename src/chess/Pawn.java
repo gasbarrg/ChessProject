@@ -25,7 +25,8 @@ public class Pawn extends ChessPiece {
 			if (((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
 					((move.toRow + 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
 				//Looks to see if other player is there so move can be accomplished
-				if (board[move.toRow][move.toColumn] != null && board[move.toRow][move.toColumn].player() != this.player()) {
+				if (board[move.toRow][move.toColumn] != null &&
+						board[move.toRow][move.toColumn].player() != this.player()) {
 					return true;
 				}
 			}
@@ -39,10 +40,12 @@ public class Pawn extends ChessPiece {
 			//If in row 6 it's the pawns first move, so it can move one or two if it wants
 			if (move.fromRow == 6) {
 				if ((move.toRow + 1 == move.fromRow && move.toColumn == move.fromColumn)) {
+					//Looks to see if chess piece already in spot trying to be moved to
 					if (board[move.toRow][move.toColumn] == null) {
 						return true;
 					}
 				}
+				//code that executes the move 2 spaces
 				if ((move.toRow + 2 == move.fromRow && move.toColumn == move.fromColumn)) {
 					if (board[5][move.fromColumn] == null && board[4][move.fromColumn] == null) {
 						return true;
@@ -56,7 +59,8 @@ public class Pawn extends ChessPiece {
 			if (((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
 					((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
 				//Looks to see if other player is there so move can be accomplished
-				if (board[move.toRow][move.toColumn] != null && board[move.toRow][move.toColumn].player() != this.player()) {
+				if (board[move.toRow][move.toColumn] != null &&
+						board[move.toRow][move.toColumn].player() != this.player()) {
 					return true;
 				}
 			}
@@ -70,10 +74,12 @@ public class Pawn extends ChessPiece {
 			//If in row 1 it's the pawns first move, so it can move one or two if it wants
 			if (move.fromRow == 1) {
 				if ((move.toRow - 1 == move.fromRow && move.toColumn == move.fromColumn)) {
+					//Looks to see if chess piece already in spot trying to be moved to
 					if (board[move.toRow][move.toColumn] == null) {
 						return true;
 					}
 				}
+				//code that executes the move 2 spaces
 				if ((move.toRow - 2 == move.fromRow && move.toColumn == move.fromColumn)) {
 					if (board[2][move.fromColumn] == null && board[3][move.fromColumn] == null) {
 						return true;
