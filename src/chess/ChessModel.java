@@ -2,49 +2,65 @@ package chess;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ChessModel implements IChessModel {
-    private IChessPiece[][] board;
+	private IChessPiece[][] board;
 	private Player player;
 
 
-	/** Handles King's Row Position */
+	/**
+	 * Handles King's Row Position
+	 */
 	int kRow;
 	int kRowBlack;
 	int kRowWhite;
-	/** Handles King's Column Position */
+	/**
+	 * Handles King's Column Position
+	 */
 	int kCol;
 	int kColBlack;
 	int kColWhite;
 
-	/** Handles Temporary Move */
+	/**
+	 * Handles Temporary Move
+	 */
 	Move m;
-	/** Handles Undo Move */
+	/**
+	 * Handles Undo Move
+	 */
 	Move undo;
 
-
+	public ArrayList<Move> kingMoves = new ArrayList<>();
 	public ArrayList<Move> moveList = new ArrayList<>();
 	public ArrayList<IChessPiece> pieceList = new ArrayList<>();
 
-	/** Handles Board Size */
+	/**
+	 * Handles Board Size
+	 */
 	private final int BOARD_SIZE = 8;
 
-	 /** prints out all chess pieces to board */
+	Random rand = new Random();
+
+
+	/**
+	 * prints out all chess pieces to board
+	 */
 	public ChessModel() {
 		board = new IChessPiece[8][8];
 		player = Player.WHITE;
 
 
 		//Initialize White Pieces
-        board[7][0] = new Rook(Player.WHITE);
-        board[7][1] = new Knight(Player.WHITE);
-        board[7][2] = new Bishop(Player.WHITE);
-        board[7][3] = new Queen(Player.WHITE);
-        board[7][4] = new King(Player.WHITE);
-        board[7][5] = new Bishop(Player.WHITE);
-        board[7][6] = new Knight (Player.WHITE);
-        board[7][7] = new Rook(Player.WHITE);
-		for(int i = 0; i < 8; i++)
+		board[7][0] = new Rook(Player.WHITE);
+		board[7][1] = new Knight(Player.WHITE);
+		board[7][2] = new Bishop(Player.WHITE);
+		board[7][3] = new Queen(Player.WHITE);
+		board[7][4] = new King(Player.WHITE);
+		board[7][5] = new Bishop(Player.WHITE);
+		board[7][6] = new Knight(Player.WHITE);
+		board[7][7] = new Rook(Player.WHITE);
+		for (int i = 0; i < 8; i++)
 			board[6][i] = new Pawn(Player.WHITE);
 
 
@@ -55,15 +71,16 @@ public class ChessModel implements IChessModel {
 		board[0][3] = new Queen(Player.BLACK);
 		board[0][4] = new King(Player.BLACK);
 		board[0][5] = new Bishop(Player.BLACK);
-		board[0][6] = new Knight (Player.BLACK);
+		board[0][6] = new Knight(Player.BLACK);
 		board[0][7] = new Rook(Player.BLACK);
-		for(int i = 0; i < 8; i++)
+		for (int i = 0; i < 8; i++)
 			board[1][i] = new Pawn(Player.BLACK);
 	}
 
 	/**
 	 * Checks to see if your king can't move to any spaces without still being in check
 	 * the return sees if your number of checks is equal to the number of available moves.
+	 *
 	 * @return numChecks == numLoops && numLoops != 0
 	 */
 	public boolean isComplete() {
@@ -90,6 +107,9 @@ public class ChessModel implements IChessModel {
 			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
 				for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
 					if (isValidMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol))) {
+						//Temporarily move king to new test pos.
+						move(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
+						moveList.remove(moveList.size() - 1);
 						numLoops++;
 						//Check for a valid move to Kings position
 						for (int row = 0; row < 8; row++) //Row Incrementation
@@ -103,6 +123,7 @@ public class ChessModel implements IChessModel {
 									}
 								}
 							}
+						undoMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
 					}
 				}
 			if (numChecks == numLoops && numLoops != 0)
@@ -114,6 +135,9 @@ public class ChessModel implements IChessModel {
 			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
 				for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
 					if (isValidMove(new Move(kRowWhite, kColWhite, newKingRow, newKingCol))) {
+						//Temp move king to that pos
+						move(new Move(kRowWhite, kColWhite, newKingRow, newKingCol));
+						moveList.remove(moveList.size() - 1);
 						numLoops++;
 						//Check for a valid move to Kings position
 						for (int row = 0; row < 8; row++) //Row Incrementation
@@ -127,6 +151,7 @@ public class ChessModel implements IChessModel {
 									}
 								}
 							}
+						undoMove(new Move(kRowWhite, kColWhite, newKingRow, newKingCol));
 					}
 				}
 			if (numChecks == numLoops && numLoops != 0)
@@ -141,7 +166,7 @@ public class ChessModel implements IChessModel {
 
 		if (board[move.fromRow][move.fromColumn] != null)
 			if (board[move.fromRow][move.fromColumn].isValidMove(move, board))
-                return true;
+				return true;
 
 		return valid;
 	}
@@ -149,10 +174,10 @@ public class ChessModel implements IChessModel {
 	@Override
 	public void move(Move move) {
 		//First, add piece to list AT destination
-		pieceList.add(pieceAt(move.toRow,move.toColumn));
+		pieceList.add(pieceAt(move.toRow, move.toColumn));
 
 		//Make Move
-		board[move.toRow][move.toColumn] =  board[move.fromRow][move.fromColumn];
+		board[move.toRow][move.toColumn] = board[move.fromRow][move.fromColumn];
 		board[move.fromRow][move.fromColumn] = null;
 		//Store Move:
 		moveList.add(move);
@@ -160,13 +185,14 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * Report whether the current player p is in check.
-	 * @param  p {@link chess.Move} the Player being checked
+	 *
+	 * @param p {@link chess.Move} the Player being checked
 	 * @return {@code true} if the current player is in check, {@code false} otherwise.
 	 */
 	public boolean inCheck(Player p) {
 		//Get position of king
-		for(int row = 0; row < 8; row++) //Row Incrementation
-			for(int col = 0; col < 8; col++) { //Col incrementation
+		for (int row = 0; row < 8; row++) //Row Incrementation
+			for (int col = 0; col < 8; col++) { //Col incrementation
 				//Check Each position for a "King" Piece under player P
 				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
 						&& board[row][col].player() == p) {
@@ -175,22 +201,24 @@ public class ChessModel implements IChessModel {
 					kCol = col;
 				}
 			}
-			//Check for a valid move to Kings position
-			for(int row = 0; row < 8; row++) //Row Incrementation
-				for(int col = 0; col < 8; col++) { //Col incrementation
-					if (board[row][col] != null){
-						//Make a new move to kings pos.
-						m = new Move(row, col, kRow, kCol);
-						//Check if move is valid
-						if (board[row][col].isValidMove(m, board))
-							return true;
-					}
+		//Check for a valid move to Kings position
+		for (int row = 0; row < 8; row++) //Row Incrementation
+			for (int col = 0; col < 8; col++) { //Col incrementation
+				if (board[row][col] != null) {
+					//Make a new move to kings pos.
+					m = new Move(row, col, kRow, kCol);
+					//Check if move is valid
+					if (board[row][col].isValidMove(m, board))
+						return true;
 				}
+			}
 		//Else, return false.
 		return false;
 	}
 
-	/**Returns the current player
+	/**
+	 * Returns the current player
+	 *
 	 * @return player
 	 */
 	public Player currentPlayer() {
@@ -199,6 +227,7 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * Returns number of rows
+	 *
 	 * @return int
 	 */
 	public int numRows() {
@@ -207,6 +236,7 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * Returns number of columns
+	 *
 	 * @return int
 	 */
 	public int numColumns() {
@@ -215,9 +245,10 @@ public class ChessModel implements IChessModel {
 
 	/**
 	 * Returns type of piece at location
+	 *
 	 * @return IChessPiece
 	 */
-	public IChessPiece pieceAt(int row, int column) {		
+	public IChessPiece pieceAt(int row, int column) {
 		return board[row][column];
 	}
 
@@ -242,7 +273,7 @@ public class ChessModel implements IChessModel {
 	/**
 	 * Undoes a move.
 	 */
-	public void undoMove(Move move){
+	public void undoMove(Move move) {
 		//Create move to be undone
 		undo = new Move(move.toRow, move.toColumn, move.fromRow, move.fromColumn);
 		//Undo move
@@ -253,26 +284,94 @@ public class ChessModel implements IChessModel {
 		//Remove the "undo" piece added by undoing move
 		pieceList.remove(pieceList.size() - 1);
 		//Set old piece
-		setPiece(move.toRow,move.toColumn, pieceList.get(pieceList.size()-1));
+		setPiece(move.toRow, move.toColumn, pieceList.get(pieceList.size() - 1));
 	}
+
+	/**
+	 * Updates the positions of each player's king piece
+	 */
+	private void getKingPos() {
+		//Get position of king
+		for (int row = 0; row < 8; row++) { //Row Incrementation
+			for (int col = 0; col < 8; col++) { //Col incrementation
+				//Check Each position for a "King" Piece under player P
+				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
+						&& board[row][col].player() == Player.BLACK) {
+					//Assign to Kings pos.
+					kRowBlack = row;
+					kColBlack = col;
+				}
+				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
+						&& board[row][col].player() == Player.WHITE) {
+					//Assign to Kings pos.
+					kRowWhite = row;
+					kColWhite = col;
+				}
+			}
+		}
+	}
+
+
+	private Move getKingMoves() {
+		int numChecks = 0, numLoops = 0;
+			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
+				for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
+					if (isValidMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol))) {
+						//Temporarily move king to new test pos.
+						move(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
+						moveList.remove(moveList.size() - 1);
+						numLoops++;
+						//Check for a valid move to Kings position
+						for (int row = 0; row < 8; row++) //Row Incrementation
+							for (int col = 0; col < 8; col++) { //Col incrementation
+								if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
+									//Make a new move to kings pos.
+									m = new Move(row, col, newKingRow, newKingCol);
+									//Check if move is valid
+									if (board[row][col].isValidMove(m, board)) {
+										numChecks++;
+									}
+								}
+							}
+						//Move king back to original pos.
+						undoMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
+					}
+					if (numLoops > numChecks && numLoops != 0) {
+						System.out.println(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
+						kingMoves.add(new Move(kRowBlack, kColBlack, newKingRow, newKingCol));
+						numLoops = 0; numChecks = 0;
+					}
+				}
+
+			//Return a random move that is valid and wont result in checkmate
+			Move randMove = kingMoves.get(rand.nextInt(kingMoves.size()));
+			kingMoves.clear();
+			return randMove;
+	}
+
+
 
 	public void AI() {
 		/*
-		 * Write a simple AI set of rules in the following order. 
+		 * Write a simple AI set of rules in the following order.
 		 * a. Check to see if you are in check.
-		 * 		i. If so, get out of check by moving the king or placing a piece to block the check 
-		 * 
-		 * b. Attempt to put opponent into check (or checkmate). 
+		 * 		i. If so, get out of check by moving the king or placing a piece to block the check
+		 *
+		 * b. Attempt to put opponent into check (or checkmate).
 		 * 		i. Attempt to put opponent into check without losing your piece
-		 *		ii. Perhaps you have won the game. 
+		 *		ii. Perhaps you have won the game.
 		 *
-		 *c. Determine if any of your pieces are in danger, 
-		 *		i. Move them if you can. 
-		 *		ii. Attempt to protect that piece. 
+		 *c. Determine if any of your pieces are in danger,
+		 *		i. Move them if you can.
+		 *		ii. Attempt to protect that piece.
 		 *
-		 *d. Move a piece (pawns first) forward toward opponent king 
+		 *d. Move a piece (pawns first) forward toward opponent king
 		 *		i. check to see if that piece is in danger of being removed, if so, move a different piece.
 		 */
 
+		if (inCheck(Player.BLACK)) {
+			getKingPos();
+			move(getKingMoves());
 		}
+	}
 }

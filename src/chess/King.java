@@ -13,8 +13,6 @@ public class King extends ChessPiece {
 
 	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
-		// More code is needed
-
 		//top 3 squares
 		if ((move.toRow + 1 == move.fromRow && (move.toColumn + 1 == move.fromColumn ||
 				move.toColumn - 1 == move.fromColumn || move.toColumn == move.fromColumn))) {

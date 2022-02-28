@@ -136,6 +136,9 @@ public class ChessPanel extends JPanel {
     }
     /**************************************************************************/
 
+    /**
+     * Method that assigned each piece an icon
+     */
     private void createIcons() {
         // Sets the Image for white player pieces
         String path = System.getProperty("user.dir");
@@ -157,7 +160,9 @@ public class ChessPanel extends JPanel {
 /**************************************************************************/
 
 
-    // method that updates the board
+    /**
+     * Method that updates the board
+     */
     private void displayBoard() {
 
         for (int r = 0; r < 8; r++) {
@@ -276,13 +281,13 @@ public class ChessPanel extends JPanel {
                         //First Click
                         if (firstTurnFlag == true) {
                             //Check that current player is clicking their piece
-                            if(model.pieceAt(r,c) != null)
-                                if(model.pieceAt(r, c).player() == model.currentPlayer()) {
+                            //if(model.pieceAt(r,c) != null)
+                                //if(model.pieceAt(r, c).player() == model.currentPlayer()) {
                                     fromRow = r;
                                     fromCol = c;
                                     firstTurnFlag = false;
                                     highlightMoves(r, c);
-                            }
+                            //}
                         }
                         //Second Click
                         else {
@@ -307,7 +312,8 @@ public class ChessPanel extends JPanel {
                                         JOptionPane.showMessageDialog(null, "Black - Check");
                                 }
                             }
-
+                            model.AI();
+                            displayBoard();
                         }
             }
         }
