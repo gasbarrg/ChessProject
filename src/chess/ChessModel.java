@@ -9,9 +9,11 @@ public class ChessModel implements IChessModel {
 
 
 	/** Handles King's Row Position */
-	int kRow;
+	int kRowBlack;
+	int kRowWhite;
 	/** Handles King's Column Position */
-	int kCol;
+	int kColBlack;
+	int kColWhite;
 
 	/** Handles Temporary Move */
 	Move m;
@@ -58,8 +60,35 @@ public class ChessModel implements IChessModel {
 	}
 
 	public boolean isComplete() {
-		boolean valid = false;
-		return valid;
+		//Get position of king
+		for(int row = 0; row < 8; row++) //Row Incrementation
+			for(int col = 0; col < 8; col++) { //Col incrementation
+				//Check Each position for a "King" Piece under player P
+				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
+						&& board[row][col].player() == Player.BLACK) {
+					//Assign to Kings pos.
+					kRowBlack = row;
+					kColBlack = col;
+				}
+				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
+						&& board[row][col].player() == Player.WHITE) {
+					//Assign to Kings pos.
+					kRowWhite= row;
+					kColWhite = col;
+				}
+			}
+		//Check for a valid move to Kings position
+		for(int row = 0; row < 8; row++) //Row Incrementation
+			for(int col = 0; col < 8; col++) { //Col incrementation
+				if (board[row][col] != null){
+					//Make a new move to kings pos.
+					m = new Move(row, col, kRowBlack, kColBlack);
+					//Check if move is valid
+					if (board[row][col].isValidMove(m, board))
+						return true;
+				}
+			}
+		return false;
 	}
 
 	@Override
