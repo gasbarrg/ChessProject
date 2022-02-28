@@ -63,8 +63,8 @@ public class ChessModel implements IChessModel {
 
 	public boolean isComplete() {
 		//Get position of king
-		for(int row = 0; row < 8; row++) //Row Incrementation
-			for(int col = 0; col < 8; col++) { //Col incrementation
+		for (int row = 0; row < 8; row++) { //Row Incrementation
+			for (int col = 0; col < 8; col++) { //Col incrementation
 				//Check Each position for a "King" Piece under player P
 				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
 						&& board[row][col].player() == Player.BLACK) {
@@ -75,22 +75,35 @@ public class ChessModel implements IChessModel {
 				if (board[row][col] != null && pieceAt(row, col).type().equalsIgnoreCase("King")
 						&& board[row][col].player() == Player.WHITE) {
 					//Assign to Kings pos.
-					kRowWhite= row;
+					kRowWhite = row;
 					kColWhite = col;
 				}
 			}
-		//Check for a valid move to Kings position
-		for(int row = 0; row < 8; row++) //Row Incrementation
-			for(int col = 0; col < 8; col++) { //Col incrementation
-				if (board[row][col] != null){
-					//Make a new move to kings pos.
-					m = new Move(row, col, kRowBlack, kColBlack);
-					//Check if move is valid
-					if (board[row][col].isValidMove(m, board))
-						return true;
+		}
+		int numChecks= 0, numLoops = 0;
+		if(inCheck(Player.BLACK)){
+		for (int newKingRow = 0; newKingRow < 8; newKingRow++)
+			for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
+				if (isValidMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol))) {
+					numLoops++;
+					//Check for a valid move to Kings position
+					for (int row = 0; row < 8; row++) //Row Incrementation
+						for (int col = 0; col < 8; col++) { //Col incrementation
+							if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
+								//Make a new move to kings pos.
+								m = new Move(row, col, newKingRow, newKingCol);
+								//Check if move is valid
+								if (board[row][col].isValidMove(m, board)) {
+									System.out.println(m);
+									System.out.println("_________________");
+									numChecks++;
+								}
+							}
+						}
+				}
 				}
 			}
-		return false;
+		return numChecks == numLoops && numLoops != 0;
 	}
 
 	@Override

@@ -279,10 +279,14 @@ public class ChessPanel extends JPanel {
                             if ((model.isValidMove(m))) {
                                 model.move(m);
                                 displayBoard();
-                                if (model.inCheck(Player.BLACK))
-                                    JOptionPane.showMessageDialog(null, "White - Check");
-                                if (model.inCheck(Player.WHITE))
-                                    JOptionPane.showMessageDialog(null, "Black - Check");
+                                if (model.isComplete())
+                                    JOptionPane.showMessageDialog(null, "Game Over");
+                                else {
+                                    if (model.inCheck(Player.BLACK))
+                                        JOptionPane.showMessageDialog(null, "White - Check");
+                                    if (model.inCheck(Player.WHITE))
+                                        JOptionPane.showMessageDialog(null, "Black - Check");
+                                }
                             }
                         }
         }
