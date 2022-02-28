@@ -8,12 +8,15 @@ public abstract class ChessPiece implements IChessPiece {
 		this.owner = player;
 	}
 
+	@Override
 	public abstract String type();
 
+	@Override
 	public Player player() {
 		return owner;
 	}
 
+	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 
 		//Check that piece is inside board

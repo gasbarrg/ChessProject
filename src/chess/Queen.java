@@ -4,8 +4,10 @@ public class Queen extends ChessPiece {
 
 	public Queen(Player player) {super(player);}
 
+	@Override
 	public String type() {return "Queen";}
 
+	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		//Verify is a generally valid move
 		if (!(super.isValidMove(move, board)))

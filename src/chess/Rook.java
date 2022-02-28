@@ -4,9 +4,11 @@ public class Rook extends ChessPiece {
 
 	public Rook(Player player) {super(player);}
 
+	@Override
 	public String type() {return "Rook";}
 	
 	// determines if the move is valid for a rook piece
+	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		//Verify is a generally valid move
 		if (!(super.isValidMove(move, board)))

@@ -6,10 +6,12 @@ public class Bishop extends ChessPiece {
 		super(player);
 	}
 
+	@Override
 	public String type() {
 		return "Bishop";
 	}
 
+	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 
 		//Verify is a generally valid move

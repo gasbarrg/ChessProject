@@ -29,7 +29,7 @@ public class ChessModel implements IChessModel {
 	/** Handles Board Size */
 	private final int BOARD_SIZE = 8;
 
-
+	 /** prints out all chess pieces to board*/
 	public ChessModel() {
 		board = new IChessPiece[8][8];
 		player = Player.WHITE;
@@ -61,6 +61,11 @@ public class ChessModel implements IChessModel {
 			board[1][i] = new Pawn(Player.BLACK);
 	}
 
+	/**
+	 * Checks to see if your king can't move to any spaces without still being in check
+	 * the return sees if your number of checks is equal to the number of available moves.
+	 * @return numChecks == numLoops && numLoops != 0
+	 */
 	public boolean isComplete() {
 		//Get position of king
 		for (int row = 0; row < 8; row++) { //Row Incrementation

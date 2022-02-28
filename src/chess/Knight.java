@@ -5,14 +5,13 @@ public class Knight extends ChessPiece {
 	public Knight(Player player) {
 		super(player);
 	}
-
+	@Override
 	public String type() {
 		return "Knight";
 	}
-
+	@Override
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 
-		boolean valid = false;
 		// More code is needed
 		if (!(super.isValidMove(move, board)))
 			return false;
