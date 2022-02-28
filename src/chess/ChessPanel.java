@@ -245,6 +245,8 @@ public class ChessPanel extends JPanel {
             //Remove last Piece from list
             model.pieceList.remove(model.pieceList.size() - 1);
 
+            //Switch player
+            model.setNextPlayer();
             displayBoard();
         }
     }
@@ -261,12 +263,17 @@ public class ChessPanel extends JPanel {
             for (int r = 0; r < model.numRows(); r++)
                 for (int c = 0; c < model.numColumns(); c++)
                     if (board[r][c] == event.getSource())
+
                         //First Click
                         if (firstTurnFlag == true) {
-                            fromRow = r;
-                            fromCol = c;
-                            firstTurnFlag = false;
-                            highlightMoves(r, c);
+                            //Check that current player is clicking their piece
+                            if(model.pieceAt(r,c) != null)
+                                if(model.pieceAt(r, c).player() == model.currentPlayer()) {
+                                    fromRow = r;
+                                    fromCol = c;
+                                    firstTurnFlag = false;
+                                    highlightMoves(r, c);
+                            }
                         }
                         //Second Click
                         else {
@@ -278,7 +285,10 @@ public class ChessPanel extends JPanel {
                             Move m = new Move(fromRow, fromCol, toRow, toCol);
                             if ((model.isValidMove(m))) {
                                 model.move(m);
+                                model.setNextPlayer();
                                 displayBoard();
+
+                                //Check for Game over
                                 if (model.isComplete())
                                     JOptionPane.showMessageDialog(null, "Game Over");
                                 else {
@@ -288,7 +298,8 @@ public class ChessPanel extends JPanel {
                                         JOptionPane.showMessageDialog(null, "Black - Check");
                                 }
                             }
+
                         }
+            }
         }
-    }
 }

@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="Update">
+    <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
-=======
       <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/ChessModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/ChessModel.class" afterDir="false" />
->>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Queen.java" afterDir="false" />
@@ -106,7 +104,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated chess piece" />
