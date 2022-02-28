@@ -105,7 +105,7 @@ public class ChessModel implements IChessModel {
 							}
 					}
 				}
-			if (numChecks == numLoops && numLoops == 0)
+			if (numChecks == numLoops && numLoops != 0)
 				return true;
 		}
 		numChecks = 0;
@@ -118,7 +118,7 @@ public class ChessModel implements IChessModel {
 						//Check for a valid move to Kings position
 						for (int row = 0; row < 8; row++) //Row Incrementation
 							for (int col = 0; col < 8; col++) { //Col incrementation
-								if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
+								if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.WHITE)) {
 									//Make a new move to kings pos.
 									m = new Move(row, col, newKingRow, newKingCol);
 									//Check if move is valid
@@ -129,7 +129,7 @@ public class ChessModel implements IChessModel {
 							}
 					}
 				}
-			if (numChecks == numLoops && numLoops == 0)
+			if (numChecks == numLoops && numLoops != 0)
 				return true;
 		}
 		return false;
