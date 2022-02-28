@@ -240,8 +240,11 @@ public class ChessPanel extends JPanel {
             Move lastMove = model.moveList.get(model.moveList.size() - 1);
             //Undo Last Move:
             model.undoMove(lastMove);
-            //Remove Last 2 Moves from list
+            //Remove Last Move from list
             model.moveList.remove(lastMove);
+            //Remove last Piece from list
+            model.pieceList.remove(model.pieceList.size() - 1);
+
             displayBoard();
         }
     }

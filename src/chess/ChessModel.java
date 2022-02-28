@@ -20,6 +20,7 @@ public class ChessModel implements IChessModel {
 
 
 	public ArrayList<Move> moveList = new ArrayList<>();
+	public ArrayList<IChessPiece> pieceList = new ArrayList<>();
 
 	/** Handles Board Size */
 	private final int BOARD_SIZE = 8;
@@ -74,9 +75,12 @@ public class ChessModel implements IChessModel {
 
 	@Override
 	public void move(Move move) {
+		//First, add piece to list AT destination
+		pieceList.add(pieceAt(move.toRow,move.toColumn));
+
+		//Make Move
 		board[move.toRow][move.toColumn] =  board[move.fromRow][move.fromColumn];
 		board[move.fromRow][move.fromColumn] = null;
-
 		//Store Move:
 		moveList.add(move);
 	}
@@ -166,10 +170,17 @@ public class ChessModel implements IChessModel {
 	 * Undoes a move.
 	 */
 	public void undoMove(Move move){
-			undo = new Move(move.toRow, move.toColumn, move.fromRow, move.fromColumn);
-			move(undo);
-			//Remove the "undo" move from the list
-			moveList.remove(moveList.get(moveList.size() - 1));
+		//Create move to be undone
+		undo = new Move(move.toRow, move.toColumn, move.fromRow, move.fromColumn);
+		//Undo move
+		move(undo);
+		//Remove the "undo" move from the list
+		moveList.remove(moveList.get(moveList.size() - 1));
+
+		//Remove the "undo" piece added by undoing move
+		pieceList.remove(pieceList.size() - 1);
+		//Set old piece
+		setPiece(move.toRow,move.toColumn, pieceList.get(pieceList.size()-1));
 	}
 
 	public void AI() {
