@@ -69,6 +69,7 @@ public class ChessPanel extends JPanel {
         add(buttonpanel);
         firstTurnFlag = true;
     }
+    /**************************************************************************/
 
     private void setBackGroundColor(int r, int c) {
         if ((c % 2 == 1 && r % 2 == 0) || (c % 2 == 0 && r % 2 == 1)) {
@@ -77,6 +78,7 @@ public class ChessPanel extends JPanel {
             board[r][c].setBackground(Color.WHITE);
         }
     }
+    /**************************************************************************/
 
     private void placeWhitePieces(int r, int c) {
         if (model.pieceAt(r, c).type().equals("Pawn")) {
@@ -104,6 +106,7 @@ public class ChessPanel extends JPanel {
             board[r][c].addActionListener(listener);
         }
     }
+    /**************************************************************************/
 
     private void placeBlackPieces(int r, int c) {
         if (model.pieceAt(r, c).type().equals("Pawn")) {
@@ -131,6 +134,7 @@ public class ChessPanel extends JPanel {
             board[r][c].addActionListener(listener);
         }
     }
+    /**************************************************************************/
 
     private void createIcons() {
         // Sets the Image for white player pieces
@@ -150,6 +154,8 @@ public class ChessPanel extends JPanel {
         bPawn = new ImageIcon(path + "./src/chess/bPawn.png");
         bKnight = new ImageIcon(path + "./src/chess/bKnight.png");
     }
+/**************************************************************************/
+
 
     // method that updates the board
     private void displayBoard() {
@@ -213,6 +219,8 @@ public class ChessPanel extends JPanel {
                 setBackGroundColor(r, c);
         }
     }
+/**************************************************************************/
+
 
     /**
      * Highlights all possible moves of a chess piece
@@ -228,6 +236,7 @@ public class ChessPanel extends JPanel {
                 if (model.isValidMove(new Move(pRow, pCol, row, col)))
                     board[row][col].setBackground(Color.gray);}
         }
+/**************************************************************************/
 
     /**
      * Undoes the last move
@@ -250,7 +259,7 @@ public class ChessPanel extends JPanel {
             displayBoard();
         }
     }
-
+/**************************************************************************/
 
     // inner class that represents action listener for buttons
     private class listener implements ActionListener {
@@ -303,3 +312,4 @@ public class ChessPanel extends JPanel {
             }
         }
 }
+/**************************************************************************/
