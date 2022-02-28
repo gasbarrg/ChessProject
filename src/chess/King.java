@@ -13,49 +13,31 @@ public class King extends ChessPiece {
 
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		// More code is needed
-		if (this.player() == Player.WHITE) {
+
 			//top 3 squares
 			if ((move.toRow + 1 == move.fromRow && (move.toColumn + 1 == move.fromColumn ||
 					move.toColumn - 1 == move.fromColumn || move.toColumn == move.fromColumn ))){
-				if ((board[move.toRow][move.toColumn] == null)) {
-					return true;
-				}
-				if (board[move.toRow][move.toColumn].player() == Player.BLACK) {
+				if ((board[move.toRow][move.toColumn] == null ||
+						board[move.toRow][move.toColumn].player() != this.player())){
 					return true;
 				}
 			}
 			//middle 3 squares
 			if((move.toRow == move.fromRow && (move.toColumn + 1 == move.fromColumn ||
 					move.toColumn - 1 == move.fromColumn || move.toColumn == move.fromColumn ))){
-				if ((board[move.toRow][move.toColumn] == null)) {
-					return true;
-				}
-				if (board[move.toRow][move.toColumn].player() == Player.BLACK) {
+				if ((board[move.toRow][move.toColumn] == null ||
+						board[move.toRow][move.toColumn].player() != this.player())){
 					return true;
 				}
 			}
-		}
 		//bottom 3 squares
 		if((move.toRow - 1 == move.fromRow && (move.toColumn + 1 == move.fromColumn ||
 				move.toColumn - 1 == move.fromColumn || move.toColumn == move.fromColumn ))){
-			if ((board[move.toRow][move.toColumn] == null)) {
-				return true;
-			}
-			if (board[move.toRow][move.toColumn].player() == Player.BLACK) {
+			if ((board[move.toRow][move.toColumn] == null ||
+					board[move.toRow][move.toColumn].player() != this.player())){
 				return true;
 			}
 		}
-// 			FIRST ATTEMPT AT THE CODE
-//			if (move.toRow + 1 == move.fromRow || move.toRow - 1 == move.fromRow ||
-//					move.toColumn + 1 == move.fromColumn || move.toColumn - 1 == move.fromColumn) {
-//				if ((board[move.toRow][move.toColumn] == null)) {
-//					return true;
-//				}
-//				if (board[move.toRow][move.toColumn].player() == Player.BLACK) {
-//					return true;
-//				}
-//
-//			}
 
 		return false;
 	}
