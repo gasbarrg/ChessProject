@@ -5,7 +5,7 @@ public class Queen extends ChessPiece {
 	public Queen(Player player) {super(player);}
 
 	public String type() {return "Queen";}
-	
+
 	public boolean isValidMove(Move move, IChessPiece[][] board) {
 		//Verify is a generally valid move
 		if (!(super.isValidMove(move, board)))
@@ -30,7 +30,7 @@ public class Queen extends ChessPiece {
 				int moves = move.fromRow - move.toRow;
 				//Get clear path on NW direction:
 				for (int m = 1; m < moves; m++)
-					if(board[move.fromRow - m][move.fromColumn - m] != null)
+					if (board[move.fromRow - m][move.fromColumn - m] != null)
 						return false;
 				return true;
 			}
@@ -39,7 +39,7 @@ public class Queen extends ChessPiece {
 				int moves = move.fromRow - move.toRow;
 				//Get clear path on NE direction:
 				for (int m = 1; m < moves; m++)
-					if(board[move.fromRow - m][move.fromColumn + m] != null)
+					if (board[move.fromRow - m][move.fromColumn + m] != null)
 						return false;
 				return true;
 			}
@@ -48,7 +48,7 @@ public class Queen extends ChessPiece {
 				int moves = move.toRow - move.fromRow;
 				//Get clear path on SW direction:
 				for (int m = 1; m < moves; m++)
-					if(board[move.fromRow + m][move.fromColumn - m] != null)
+					if (board[move.fromRow + m][move.fromColumn - m] != null)
 						return false;
 				return true;
 			}
@@ -57,7 +57,7 @@ public class Queen extends ChessPiece {
 				int moves = move.toRow - move.fromRow;
 				//Get clear path on SE direction:
 				for (int m = 1; m < moves; m++)
-					if(board[move.fromRow + m][move.fromColumn + m] != null)
+					if (board[move.fromRow + m][move.fromColumn + m] != null)
 						return false;
 				return true;
 			}
@@ -68,64 +68,72 @@ public class Queen extends ChessPiece {
 		//Second, Check Rook Moves:
 		////////////////////////////////////////////////////////////////////////////////
 		//Verify moving in straight line
-		if(move.fromRow != move.toRow && move.fromColumn != move.toColumn)
+		if (move.fromRow != move.toRow && move.fromColumn != move.toColumn)
 			return false;
 
 		//Verify no pieces between
-		if(this.player() == Player.WHITE){
+		if (this.player() == Player.WHITE) {
 			//Check for vertical movement:
-			if(move.fromColumn == move.toColumn && move.fromRow != move.toRow){
+			if (move.fromColumn == move.toColumn && move.fromRow != move.toRow) {
 				//If Vertical movement, check that there are no pieces DOWN
-				for(int row = move.fromRow + 1; row < move.toRow; row++) {
+				for (int row = move.fromRow + 1; row < move.toRow; row++) {
 					if (board[row][move.fromColumn] != null) {
-						return false;}
+						return false;
+					}
 				}
 				//If Vertical movement, check that there are no pieces UP
-				for(int row = move.fromRow - 1; row > move.toRow; row--) {
+				for (int row = move.fromRow - 1; row > move.toRow; row--) {
 					if (board[row][move.fromColumn] != null) {
-						return false;}
+						return false;
+					}
 				}
 			}
 			//Check for horizontal movement:
-			if(move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
+			if (move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
 				//If horizontal movement, check that there are no pieces RIGHT
-				for(int col = move.fromColumn + 1; col < move.toColumn; col++) {
+				for (int col = move.fromColumn + 1; col < move.toColumn; col++) {
 					if (board[move.fromRow][col] != null) {
-						return false;}
+						return false;
+					}
 				}
 				//If horizontal movement, check that there are no pieces LEFT
-				for(int col = move.fromColumn - 1; col > move.toColumn; col--) {
+				for (int col = move.fromColumn - 1; col > move.toColumn; col--) {
 					if (board[move.fromRow][col] != null) {
-						return false;}
+						return false;
+					}
 				}
 			}
 		}
 		//Verify for black pieces
-		if(this.player() == Player.BLACK){
+		if (this.player() == Player.BLACK) {
 			//Check for vertical movement:
-			if(move.fromColumn == move.toColumn && move.fromRow != move.toRow){
+			if (move.fromColumn == move.toColumn && move.fromRow != move.toRow) {
 				//If Vertical movement, check that there are no pieces DOWN
-				for(int row = move.fromRow - 1; row > move.toRow; row--) {
+				for (int row = move.fromRow - 1; row > move.toRow; row--) {
 					if (board[row][move.fromColumn] != null) {
-						return false;}
+						return false;
+					}
 				}
 				//If Vertical movement, check that there are no pieces UP
-				for(int row = move.fromRow + 1; row < move.toRow; row++) {
+				for (int row = move.fromRow + 1; row < move.toRow; row++) {
 					if (board[row][move.fromColumn] != null) {
-						return false;}
+						return false;
+					}
 				}
 			}
 			//Check for horizontal movement:
-			if(move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
+			if (move.fromColumn != move.toColumn && move.fromRow == move.toRow) {
 				//If horizontal movement, check that there are no pieces RIGHT
-				for(int col = move.fromColumn + 1; col < move.toColumn; col++) {
+				for (int col = move.fromColumn + 1; col < move.toColumn; col++) {
 					if (board[move.fromRow][col] != null) {
-						return false;}
+						return false;
+					}
 				}
 				//If horizontal movement, check that there are no pieces LEFT
-				for(int col = move.fromColumn - 1; col > move.toColumn; col--) {
+				for (int col = move.fromColumn - 1; col > move.toColumn; col--) {
 					if (board[move.fromRow][col] != null) {
-						return false;}
+						return false;
+					}
 				}
 			}
 		}

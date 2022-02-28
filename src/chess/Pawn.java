@@ -53,8 +53,7 @@ public class Pawn extends ChessPiece {
 				}
 			}
 
-		}
-		else if (this.player() == Player.BLACK) {
+		} else if (this.player() == Player.BLACK) {
 			//Allows you to move diagonally down and over one piece to capture
 			if (((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn - 1)) ||
 					((move.toRow - 1 == move.fromRow) && (move.fromColumn == move.toColumn + 1))) {
