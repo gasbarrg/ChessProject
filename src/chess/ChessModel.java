@@ -80,30 +80,54 @@ public class ChessModel implements IChessModel {
 				}
 			}
 		}
-		int numChecks= 0, numLoops = 0;
-		if(inCheck(Player.BLACK)){
-		for (int newKingRow = 0; newKingRow < 8; newKingRow++)
-			for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
-				if (isValidMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol))) {
-					numLoops++;
-					//Check for a valid move to Kings position
-					for (int row = 0; row < 8; row++) //Row Incrementation
-						for (int col = 0; col < 8; col++) { //Col incrementation
-							if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
-								//Make a new move to kings pos.
-								m = new Move(row, col, newKingRow, newKingCol);
-								//Check if move is valid
-								if (board[row][col].isValidMove(m, board)) {
-									System.out.println(m);
-									System.out.println("_________________");
-									numChecks++;
+		int numChecks = 0, numLoops = 0;
+		if (inCheck(Player.BLACK)) {
+			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
+				for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
+					if (isValidMove(new Move(kRowBlack, kColBlack, newKingRow, newKingCol))) {
+						numLoops++;
+						//Check for a valid move to Kings position
+						for (int row = 0; row < 8; row++) //Row Incrementation
+							for (int col = 0; col < 8; col++) { //Col incrementation
+								if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
+									//Make a new move to kings pos.
+									m = new Move(row, col, newKingRow, newKingCol);
+									//Check if move is valid
+									if (board[row][col].isValidMove(m, board)) {
+										numChecks++;
+									}
 								}
 							}
-						}
+					}
 				}
+			if (numChecks == numLoops && numLoops == 0)
+				return true;
+		}
+		numChecks = 0;
+		numLoops = 0;
+		if (inCheck(Player.WHITE)) {
+			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
+				for (int newKingCol = 0; newKingCol < 8; newKingCol++) {
+					if (isValidMove(new Move(kRowWhite, kColWhite, newKingRow, newKingCol))) {
+						numLoops++;
+						//Check for a valid move to Kings position
+						for (int row = 0; row < 8; row++) //Row Incrementation
+							for (int col = 0; col < 8; col++) { //Col incrementation
+								if (board[row][col] != null && !pieceAt(row, col).type().equalsIgnoreCase("King") && !pieceAt(row, col).player().equals(Player.BLACK)) {
+									//Make a new move to kings pos.
+									m = new Move(row, col, newKingRow, newKingCol);
+									//Check if move is valid
+									if (board[row][col].isValidMove(m, board)) {
+										numChecks++;
+									}
+								}
+							}
+					}
 				}
-			}
-		return numChecks == numLoops && numLoops != 0;
+			if (numChecks == numLoops && numLoops == 0)
+				return true;
+		}
+		return false;
 	}
 
 	@Override
