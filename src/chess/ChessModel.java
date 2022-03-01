@@ -308,7 +308,10 @@ public class ChessModel implements IChessModel {
 		}
 	}
 
-
+	/**
+	 * Returns a Random king move that will be out of check
+	 * @return Move
+	 */
 	private Move getKingMoves() {
 		int numChecks = 0, numLoops = 0;
 			for (int newKingRow = 0; newKingRow < 8; newKingRow++)
@@ -350,14 +353,11 @@ public class ChessModel implements IChessModel {
 			}
 	}
 
-	private void tempMove(Move m){
-		//Temporarily move king to new test pos.
-		move(m);
-		moveList.remove(moveList.size() - 1);
-		pieceList.remove(pieceList.size() - 1);
-	}
 
-
+	/**
+	 * Private function to attempt to put the king in check, while not letting the queen be taken.
+	 * @return Move
+	 */
 	private Move putInCheck(){
 		//Check for moves to put white king in check:
 		getKingPos();
@@ -367,7 +367,9 @@ public class ChessModel implements IChessModel {
 				//Make a random move
 				for (int moveRow = 0; moveRow < 8; moveRow++)
 					for (int moveCol = 0; moveCol < 8; moveCol++) {
-						if(isValidMove(new Move(testRow, testCol, moveRow, moveCol)) && !board[testRow][testCol].type().equalsIgnoreCase("King")) {
+						//Check for valid move that doesnt move the king
+						if(isValidMove(new Move(testRow, testCol, moveRow, moveCol))
+								&& !board[testRow][testCol].type().equalsIgnoreCase("King")) {
 							move(new Move(testRow, testCol, moveRow, moveCol));
 							//If There is then a valid move to king, add the potential move to the list.
 							if (isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite))) {
@@ -395,6 +397,10 @@ public class ChessModel implements IChessModel {
 			return null;
 	}
 
+	/**
+	 * Private function to Take the king if it is in check
+	 * @return Move
+	 */
 	private Move takeInCheck(){
 		getKingPos();
 		if(inCheck(Player.WHITE)){
@@ -408,6 +414,10 @@ public class ChessModel implements IChessModel {
 		return null;
 	}
 
+	/**
+	 * Private function to return a random pawn movement
+	 * @return Move
+	 */
 	private Move movePawn(){
 		//check each spot for a pawn:
 		for (int testRow = 0; testRow < 8; testRow++)
@@ -457,15 +467,17 @@ public class ChessModel implements IChessModel {
 					for (int moveRow = 0; moveRow < 8; moveRow++)
 						for (int moveCol = 0; moveCol < 8; moveCol++) {
 							//If a valid move to white piece
-							if (isValidMove(new Move(testRow, testCol, moveRow, moveCol))
+							Move tempMove = new Move(testRow, testCol, moveRow, moveCol);
+							if (isValidMove(tempMove)
 									&& board[moveRow][moveCol] != null
 									&& board[moveRow][moveCol].player() == Player.WHITE){
-								//If queen cant be taken, add move to list
-								if (!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite))
-										&& board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
-									randMove.add(new Move(testRow, testCol, moveRow, moveCol));
-								else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
-									randMove.add(new Move(testRow, testCol, moveRow, moveCol));
+								//If it can't be taken, add move to list
+								if (!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite)))
+									randMove.add(tempMove);
+								//Else, add it to the list as long as its not a
+								else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen")
+									&& board[moveRow][moveCol].type().equalsIgnoreCase("Bishop"))
+									randMove.add(tempMove);
 							}
 						}
 				}
@@ -478,23 +490,30 @@ public class ChessModel implements IChessModel {
 		else
 			return null;
 	}
+
+	private Move approachKing(){
+		for (int testRow = 0; testRow < 8; testRow++)
+			for (int testCol = 0; testCol < 8; testCol++) {
+				if (board[testRow][testCol] != null && !board[testRow][testCol].type().equalsIgnoreCase("King")
+						&& board[testRow][testCol].player() != Player.WHITE) {
+					//For each black piece, look for a safe move towards king
+					for (int moveRow = 0; moveRow < 8; moveRow++)
+						for (int moveCol = 0; moveCol < 8; moveCol++) {
+
+						}
+				}
+	}
+
+	/**
+	 * Performs A Set of actions in order:
+	 * -Tries to get out of check
+	 * -Takes the enemy king if it is in check
+	 * -Tries to put enemy king in check
+	 * -Tries to take a piece
+	 * -Tries to move towards king
+	 * -Moves a random pawn
+	 */
 	public void AI() {
-		/*
-		 * Write a simple AI set of rules in the following order.
-		 *
-		 * b. Attempt to put opponent into check (or checkmate).
-		 * 		i. Attempt to put opponent into check without losing your piece
-		 *		ii. Perhaps you have won the game.
-		 *
-		 *c. Determine if any of your pieces are in danger,
-		 *		i. Move them if you can.
-		 *		ii. Attempt to protect that piece.
-		 *
-		 *d. Move a piece (pawns first) forward toward opponent king
-		 *		i. check to see if that piece is in danger of being removed, if so, move a different piece.
-		 */
-
-
 		// a. Check to see if you are in check.
 		// 		i. If so, get out of check by moving the king or placing a piece to block the check
 		if (inCheck(Player.BLACK)) {

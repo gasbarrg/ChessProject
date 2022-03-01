@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="56153583-4b12-446f-91fe-51328f560d44" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestKing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestKing.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestQueen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestQueen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/TestKing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestKing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/TestQueen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestQueen.java" afterDir="false" />
+=======
+    <list default="true" id="6975c745-d921-452d-adc8-6ede8289d944" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +69,11 @@
       <recent name="chess" />
     </key>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="JUnit.TestQueen.testCaptureMove">
+=======
+  <component name="RunManager" selected="Application.ChessGUI">
+>>>>>>> Stashed changes
     <configuration name="ChessGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess.ChessGUI" />
       <module name="ChessPrj" />
@@ -76,7 +87,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="TestKing.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="TestBishop.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -85,14 +100,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="chess" />
+<<<<<<< Updated upstream
       <option name="MAIN_CLASS_NAME" value="chess.TestKing" />
+=======
+      <option name="MAIN_CLASS_NAME" value="chess.TestBishop" />
+>>>>>>> Stashed changes
       <option name="METHOD_NAME" value="testCaptureMove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="TestQueen.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="TestBishop.testInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -101,8 +124,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="chess" />
+<<<<<<< Updated upstream
       <option name="MAIN_CLASS_NAME" value="chess.TestQueen" />
       <option name="METHOD_NAME" value="testCaptureMove" />
+=======
+      <option name="MAIN_CLASS_NAME" value="chess.TestBishop" />
+      <option name="METHOD_NAME" value="testInvalidMove" />
+>>>>>>> Stashed changes
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -142,11 +170,19 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
         <item itemvalue="JUnit.TestQueen.testCaptureMove" />
         <item itemvalue="JUnit.TestQueen.testInvalidMove" />
         <item itemvalue="JUnit.TestQueen.testValidMove" />
         <item itemvalue="Application.ChessGUI" />
         <item itemvalue="JUnit.TestKing.testCaptureMove" />
+=======
+        <item itemvalue="Application.ChessGUI" />
+        <item itemvalue="JUnit.TestKing.testInvalidMove" />
+        <item itemvalue="JUnit.TestKing.testValidMove" />
+        <item itemvalue="JUnit.TestBishop.testCaptureMove" />
+        <item itemvalue="JUnit.TestBishop.testInvalidMove" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +222,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated chess piece" />
