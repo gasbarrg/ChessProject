@@ -1,6 +1,5 @@
 package chess;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -51,9 +50,10 @@ public class ChessModel implements IChessModel {
 	 */
 	private final int BOARD_SIZE = 8;
 
+	/** Random # Generator for various moves*/
 	Random rand = new Random();
 
-
+/**************************************************************************/
 	/**
 	 * prints out all chess pieces to board
 	 */
@@ -87,7 +87,7 @@ public class ChessModel implements IChessModel {
 		for (int i = 0; i < 8; i++)
 			board[1][i] = new Pawn(Player.BLACK);
 	}
-
+/**************************************************************************/
 	/**
 	 * Checks to see if your king can't move to any spaces without still being in check
 	 * the return sees if your number of checks is equal to the number of available moves.
@@ -158,7 +158,7 @@ public class ChessModel implements IChessModel {
 		}
 		return false;
 	}
-
+	/**************************************************************************/
 	@Override
 	public boolean isValidMove(Move move) {
 		boolean valid = false;
@@ -169,7 +169,7 @@ public class ChessModel implements IChessModel {
 
 		return valid;
 	}
-
+	/**************************************************************************/
 	@Override
 	public void move(Move move) {
 		//First, add piece to list AT destination
@@ -180,7 +180,7 @@ public class ChessModel implements IChessModel {
 		//Store Move:
 		moveList.add(move);
 	}
-
+/**************************************************************************/
 	/**
 	 * Report whether the current player p is in check.
 	 *
@@ -213,7 +213,7 @@ public class ChessModel implements IChessModel {
 		//Else, return false.
 		return false;
 	}
-
+/**************************************************************************/
 	/**
 	 * Returns the current player
 	 *
@@ -222,7 +222,7 @@ public class ChessModel implements IChessModel {
 	public Player currentPlayer() {
 		return player;
 	}
-
+/**************************************************************************/
 	/**
 	 * Returns number of rows
 	 *
@@ -231,7 +231,7 @@ public class ChessModel implements IChessModel {
 	public int numRows() {
 		return BOARD_SIZE;
 	}
-
+/**************************************************************************/
 	/**
 	 * Returns number of columns
 	 *
@@ -240,7 +240,7 @@ public class ChessModel implements IChessModel {
 	public int numColumns() {
 		return BOARD_SIZE;
 	}
-
+/**************************************************************************/
 	/**
 	 * Returns type of piece at location
 	 *
@@ -249,14 +249,14 @@ public class ChessModel implements IChessModel {
 	public IChessPiece pieceAt(int row, int column) {
 		return board[row][column];
 	}
-
+/**************************************************************************/
 	/**
 	 * Sets current player to the next player by calling player.next()
 	 */
 	public void setNextPlayer() {
 		player = player.next();
 	}
-
+/**************************************************************************/
 	/**
 	 * Places a piece of type "piece" at location row, column.
 	 *
@@ -267,7 +267,7 @@ public class ChessModel implements IChessModel {
 	public void setPiece(int row, int column, IChessPiece piece) {
 		board[row][column] = piece;
 	}
-
+/**************************************************************************/
 	/**
 	 * Undoes a move.
 	 */
@@ -283,7 +283,7 @@ public class ChessModel implements IChessModel {
 		//Set old piece
 		setPiece(move.toRow, move.toColumn, pieceList.get(pieceList.size() - 1));
 	}
-
+/**************************************************************************/
 	/**
 	 * Updates the positions of each player's king piece
 	 */
@@ -307,7 +307,7 @@ public class ChessModel implements IChessModel {
 			}
 		}
 	}
-
+/**************************************************************************/
 	/**
 	 * Returns a Random king move that will be out of check
 	 * @return Move
@@ -342,7 +342,6 @@ public class ChessModel implements IChessModel {
 						numLoops = 0; numChecks = 0;
 					}
 				}
-
 			//Return a random move that is valid and won't result in checkmate
 			if(kingMoves.size() == 0)
 				return null;
@@ -352,7 +351,7 @@ public class ChessModel implements IChessModel {
 				return randMove;
 			}
 	}
-
+/**************************************************************************/
 
 	/**
 	 * Private function to attempt to put the king in check, while not letting the queen be taken.
@@ -371,16 +370,16 @@ public class ChessModel implements IChessModel {
 						if(isValidMove(new Move(testRow, testCol, moveRow, moveCol))
 								&& !board[testRow][testCol].type().equalsIgnoreCase("King")) {
 							move(new Move(testRow, testCol, moveRow, moveCol));
-							//If There is then a valid move to king, add the potential move to the list.
-							if (isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite))) {
-								//If queen and can't be taken, add move to list
-								 if(!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite))
-								 && board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
+							//If There is then a valid move to king and it can't be taken, add move to list
+							if (isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite))
+								&& cantBeTaken(new Move(testRow, testCol, moveRow, moveCol))) {
 									inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
-								 //Else, add to list
-								 else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
-									 inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
 							}
+							//Else, add to list
+							else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen") &&
+									isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite)))
+								inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
+
 							undoMove(new Move(testRow, testCol, moveRow, moveCol));
 							//Remove old move data
 							moveList.remove(moveList.size() - 1);
@@ -396,6 +395,8 @@ public class ChessModel implements IChessModel {
 		else
 			return null;
 	}
+/**************************************************************************/
+
 
 	/**
 	 * Private function to Take the king if it is in check
@@ -413,6 +414,8 @@ public class ChessModel implements IChessModel {
 		}
 		return null;
 	}
+/**************************************************************************/
+
 
 	/**
 	 * Private function to return a random pawn movement
@@ -442,21 +445,29 @@ public class ChessModel implements IChessModel {
 		else
 			return null;
 	}
+/**************************************************************************/
+
 
 	/**
 	 * Checks to see if move may result in the piece being taken
+	 * by checking if a white piece can move to m.toRow , m.toColumn
 	 * @param m
-	 * @return
+	 * @return boolean
 	 */
-	private boolean canBeTaken(Move m){
+	private boolean cantBeTaken(Move m){
 		for (int testRow = 0; testRow < 8; testRow++)
 			for (int testCol = 0; testCol < 8; testCol++){
-				if(isValidMove(new Move(testRow, testCol, m.toRow, m.toColumn))){
-					return true;
+				if(isValidMove(new Move(testRow, testCol, m.toRow, m.toColumn))
+						&& board[testRow][testCol].player() == Player.WHITE){
+					return false;
 				}
 			}
-		return false;
+		System.out.println("Cant be taken method");
+		return true;
+
 	}
+	/**************************************************************************/
+
 
 	private Move takePiece(){
 		for (int testRow = 0; testRow < 8; testRow++)
@@ -471,13 +482,22 @@ public class ChessModel implements IChessModel {
 							if (isValidMove(tempMove)
 									&& board[moveRow][moveCol] != null
 									&& board[moveRow][moveCol].player() == Player.WHITE){
+								//Temp move there
+								move(tempMove);
 								//If it can't be taken, add move to list
-								if (!canBeTaken(tempMove))
+								if(cantBeTaken(tempMove)) {
 									randMove.add(tempMove);
+								}
 								//Else, add it to the list as long as its not a
-								else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen")
-									&& board[moveRow][moveCol].type().equalsIgnoreCase("Bishop"))
+								else if (board[testRow][testCol] != null
+										&& !board[testRow][testCol].type().equalsIgnoreCase("Queen")
+										&& !board[testRow][testCol].type().equalsIgnoreCase("Bishop")) {
 									randMove.add(tempMove);
+								}
+								undoMove(tempMove);
+								//Remove old move data
+								moveList.remove(moveList.size() - 1);
+								pieceList.remove(pieceList.size() - 1);
 							}
 						}
 				}
@@ -490,6 +510,8 @@ public class ChessModel implements IChessModel {
 		else
 			return null;
 	}
+	/**************************************************************************/
+
 
 	private Move approachKing() {
 		//check all pieces
@@ -508,18 +530,18 @@ public class ChessModel implements IChessModel {
 								for (int moveRow2 = 0; moveRow2 < 8; moveRow2++)
 									for (int moveCol2 = 0; moveCol2 < 8; moveCol2++) {
 										if (isValidMove(new Move(moveRow, moveCol, moveRow2, moveCol2))
-												&& !canBeTaken(new Move(moveRow, moveCol, moveRow2, moveCol2))) {
+												&& board[moveRow2][moveCol2] != null
+												&& cantBeTaken(tempMove)) {
 											randMove.add(tempMove);
 										}
 									}
-								undoMove(new Move(testRow, testCol, moveRow, moveCol));
+								undoMove(tempMove);
 								//Remove old move data
 								moveList.remove(moveList.size() - 1);
 								pieceList.remove(pieceList.size() - 1);
 							}
 						}
 				}
-
 			}
 		if(randMove.size() > 0) {
 			Move randomMove = randMove.get(rand.nextInt(randMove.size()));
@@ -529,6 +551,8 @@ public class ChessModel implements IChessModel {
 		else
 			return null;
 	}
+/**************************************************************************/
+
 
 	/**
 	 * Performs A Set of actions in order:
@@ -560,16 +584,17 @@ public class ChessModel implements IChessModel {
 				Move inCheckMove = putInCheck();
 				if (inCheckMove != null)
 					move(inCheckMove);
-				//Else, try to make safe move to take piece
 				else {
-					Move safeMove = approachKing();
-					if (safeMove != null)
-						move(safeMove);
+					//Else, try to take a safe piece
+					Move takeRandomPiece = takePiece();
+					if (takeRandomPiece != null)
+						move(takeRandomPiece);
+						//Else, move pawn
 					else {
-						Move takeRandomPiece = takePiece();
-						if (takeRandomPiece != null)
-							move(takeRandomPiece);
-							//Else, move pawn
+						//Else, try to make safe move to take piece
+						Move safeMove = approachKing();
+						if (safeMove != null)
+							move(safeMove);
 						else {
 							Move pawnMove = movePawn();
 							if (pawnMove != null)
@@ -581,3 +606,4 @@ public class ChessModel implements IChessModel {
 		}
 	}
 }
+/**************************************************************************/
