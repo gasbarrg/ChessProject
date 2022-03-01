@@ -53,18 +53,22 @@ public class TestKing {
         //set King  position
         board[3][3] = whiteKing;
         board[3][4] = whiteKing;
-        //See if can move on white piece
+        //See if you can move on white piece
         move = new Move(3, 3, 3, 4);
         assertFalse("cant move on own color piece", whiteKing.isValidMove(move, board));
+        //Move King  UP 2
+        move = new Move(3, 3, 0, 3);
+        assertFalse("cant move out of designated area", whiteKing.isValidMove(move, board));
+
 
     }
     @Test
     public void testCaptureMove(){
         //set Bishop  position
-        board[1][5] = whiteKing;
+        board[3][4] = blackKing;
         board[3][3] = whiteKing;
-        //Test if you can move onto back piece to capture
-        move = new Move(3,3,1,5);
+        //Test if you can move onto black piece to capture
+        move = new Move(3,3,3,4);
         assertTrue("Capture black", whiteKing.isValidMove(move, board));
     }
 

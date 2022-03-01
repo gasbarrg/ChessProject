@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6975c745-d921-452d-adc8-6ede8289d944" name="Changes" comment="Update">
-      <change afterPath="$PROJECT_DIR$/src/chess/TestBishop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/TestKing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/TestKnight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/TestQueen.java" afterDir="false" />
+    <list default="true" id="56153583-4b12-446f-91fe-51328f560d44" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestRook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestRook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/TestRook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestRook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestKing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestKing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestQueen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestQueen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/TestKing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestKing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/TestQueen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestQueen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +62,21 @@
       <recent name="chess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestKing.testInvalidMove">
-    <configuration name="TestBishop.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestQueen.testCaptureMove">
+    <configuration name="ChessGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chess.ChessGUI" />
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestKing.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -74,14 +85,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="chess" />
-      <option name="MAIN_CLASS_NAME" value="chess.TestBishop" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestKing" />
       <option name="METHOD_NAME" value="testCaptureMove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBishop.testInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestQueen.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -90,14 +101,30 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="chess" />
-      <option name="MAIN_CLASS_NAME" value="chess.TestBishop" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestQueen" />
+      <option name="METHOD_NAME" value="testCaptureMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestQueen.testInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestQueen" />
       <option name="METHOD_NAME" value="testInvalidMove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBishop.testValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestQueen.testValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -106,39 +133,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="chess" />
-      <option name="MAIN_CLASS_NAME" value="chess.TestBishop" />
-      <option name="METHOD_NAME" value="testValidMove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestKing.testInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ChessPrj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="chess" />
-      <option name="MAIN_CLASS_NAME" value="chess.TestKing" />
-      <option name="METHOD_NAME" value="testInvalidMove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestKing.testValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ChessPrj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="chess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="chess" />
-      <option name="MAIN_CLASS_NAME" value="chess.TestKing" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestQueen" />
       <option name="METHOD_NAME" value="testValidMove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -147,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestKing.testInvalidMove" />
-        <item itemvalue="JUnit.TestKing.testValidMove" />
-        <item itemvalue="JUnit.TestBishop.testCaptureMove" />
-        <item itemvalue="JUnit.TestBishop.testInvalidMove" />
-        <item itemvalue="JUnit.TestBishop.testValidMove" />
+        <item itemvalue="JUnit.TestQueen.testCaptureMove" />
+        <item itemvalue="JUnit.TestQueen.testInvalidMove" />
+        <item itemvalue="JUnit.TestQueen.testValidMove" />
+        <item itemvalue="Application.ChessGUI" />
+        <item itemvalue="JUnit.TestKing.testCaptureMove" />
       </list>
     </recent_temporary>
   </component>
