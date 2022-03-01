@@ -377,8 +377,11 @@ public class ChessModel implements IChessModel {
 							}
 							//Else, add to list
 							else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen") &&
+									!board[moveRow][moveCol].type().equalsIgnoreCase("Bishop") &&
+									!board[moveRow][moveCol].type().equalsIgnoreCase("Rook") &&
 									isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite)))
 								inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
+							
 
 							undoMove(new Move(testRow, testCol, moveRow, moveCol));
 							//Remove old move data
