@@ -456,13 +456,12 @@ public class ChessModel implements IChessModel {
 	 */
 	private boolean cantBeTaken(Move m){
 		for (int testRow = 0; testRow < 8; testRow++)
-			for (int testCol = 0; testCol < 8; testCol++){
-				if(isValidMove(new Move(testRow, testCol, m.toRow, m.toColumn))
-						&& board[testRow][testCol].player() == Player.WHITE){
+			for (int testCol = 0; testCol < 8; testCol++) {
+				if (isValidMove(new Move(testRow, testCol, m.toRow, m.toColumn))
+						&& board[testRow][testCol].player() == Player.WHITE) {
 					return false;
 				}
 			}
-		System.out.println("Cant be taken method");
 		return true;
 
 	}
