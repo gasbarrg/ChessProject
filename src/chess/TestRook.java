@@ -19,7 +19,7 @@ public class TestRook {
 
     @Test
     public void testValidMove(){
-        //set Rook starting position
+        //set Rook position
         board[3][0] = whiteRook;
         //Move Rook Vertically North
         move = new Move(3,0,0,0);
@@ -39,7 +39,7 @@ public class TestRook {
     }
     @Test
     public void testInvalidMove(){
-        //set Rook starting position
+        //set Rook position
         board[3][3] = whiteRook;
         board[3][7] = whiteRook;
         //Test if you can move into own piece
@@ -52,7 +52,7 @@ public class TestRook {
     }
     @Test
     public void testCaptureMove(){
-        //set Rook starting position
+        //set Rook position
         board[3][0] = blackRook;
         board[3][4] = whiteRook;
         //Test if you can move onto back piece to capture
