@@ -43,6 +43,9 @@ public class ChessModel implements IChessModel {
 	/**List of all moves to put white king in check*/
 	public ArrayList<Move> inCheckList = new ArrayList<>();
 
+	/** List of random moves for any piece to take */
+	public ArrayList<Move> randMove = new ArrayList<>();
+
 	/**
 	 * Handles Board Size
 	 */
@@ -354,9 +357,6 @@ public class ChessModel implements IChessModel {
 		pieceList.remove(pieceList.size() - 1);
 	}
 
-	private void inDanger() {
-		//TODO
-	}
 
 	private Move putInCheck(){
 		//Check for moves to put white king in check:
@@ -371,7 +371,13 @@ public class ChessModel implements IChessModel {
 							move(new Move(testRow, testCol, moveRow, moveCol));
 							//If There is then a valid move to king, add the potential move to the list.
 							if (isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite))) {
-								inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
+								//If queen and can't be taken, add move to list
+								 if(!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite))
+								 && board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
+									inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
+								 //Else, add to list
+								 else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
+									 inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
 							}
 							undoMove(new Move(testRow, testCol, moveRow, moveCol));
 							//Remove old move data
@@ -389,15 +395,88 @@ public class ChessModel implements IChessModel {
 			return null;
 	}
 
-	private void takeInCheck(){
+	private Move takeInCheck(){
+		getKingPos();
 		if(inCheck(Player.WHITE)){
 			for (int testRow = 0; testRow < 8; testRow++)
 				for (int testCol = 0; testCol < 8; testCol++) {
 					if(isValidMove(new Move(testRow, testCol, kRowWhite, kColWhite))){
-						move(new Move(testRow, testCol, kRowWhite, kColWhite));
+						return(new Move(testRow, testCol, kRowWhite, kColWhite));
 					}
 				}
 		}
+		return null;
+	}
+
+	private Move movePawn(){
+		//check each spot for a pawn:
+		for (int testRow = 0; testRow < 8; testRow++)
+			for (int testCol = 0; testCol < 8; testCol++) {
+				if(board[testRow][testCol] != null && board[testRow][testCol].type().equalsIgnoreCase("Pawn")
+					&& board[testRow][testCol].player() != Player.WHITE){
+					//For each black pawn, make a new random move
+					for (int moveRow = 0; moveRow < 8; moveRow++)
+						for (int moveCol = 0; moveCol < 8; moveCol++) {
+							if(isValidMove(new Move(testRow, testCol, moveRow,moveCol))) {
+								//If valid random move, add to list
+								randMove.add(new Move(testRow, testCol, moveRow, moveCol));
+							}
+						}
+				}
+			}
+		if(randMove.size() > 0) {
+			Move randomMove = randMove.get(rand.nextInt(randMove.size()));
+			randMove.clear();
+			return randomMove;
+		}
+		else
+			return null;
+	}
+
+	/**
+	 * Checks to see if move may result in the piece being taken
+	 * @param m
+	 * @return
+	 */
+	private boolean canBeTaken(Move m){
+		for (int testRow = 0; testRow < 8; testRow++)
+			for (int testCol = 0; testCol < 8; testCol++){
+				if(isValidMove(new Move(testRow, testCol, m.toRow, m.toColumn))){
+					return true;
+				}
+			}
+		return false;
+	}
+
+	private Move takePiece(){
+		for (int testRow = 0; testRow < 8; testRow++)
+			for (int testCol = 0; testCol < 8; testCol++) {
+				if (board[testRow][testCol] != null && !board[testRow][testCol].type().equalsIgnoreCase("King")
+						&& board[testRow][testCol].player() != Player.WHITE) {
+					//For each black piece, look for any possible white piece to take
+					for (int moveRow = 0; moveRow < 8; moveRow++)
+						for (int moveCol = 0; moveCol < 8; moveCol++) {
+							//If a valid move to white piece
+							if (isValidMove(new Move(testRow, testCol, moveRow, moveCol))
+									&& board[moveRow][moveCol] != null
+									&& board[moveRow][moveCol].player() == Player.WHITE){
+								//If queen cant be taken, add move to list
+								if (!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite))
+										&& board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
+									randMove.add(new Move(testRow, testCol, moveRow, moveCol));
+								else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen"))
+									randMove.add(new Move(testRow, testCol, moveRow, moveCol));
+							}
+						}
+				}
+			}
+		if(randMove.size() > 0) {
+			Move randomMove = randMove.get(rand.nextInt(randMove.size()));
+			randMove.clear();
+			return randomMove;
+		}
+		else
+			return null;
 	}
 	public void AI() {
 		/*
@@ -426,12 +505,29 @@ public class ChessModel implements IChessModel {
 			if (kingMove != null)
 				move(kingMove);
 		}
-		//Try to Take King if in check:
-		takeInCheck();
-		//Try to put enemy king in check
-		Move inCheckMove = putInCheck();
-		if(inCheckMove != null)
-			move(inCheckMove);
-
+		else {
+			//Try to Take King if in check:
+			Move endGameMove = takeInCheck();
+			if (endGameMove != null)
+				move(endGameMove);
+			else {
+				//else, Try to put enemy king in check
+				Move inCheckMove = putInCheck();
+				if (inCheckMove != null)
+					move(inCheckMove);
+				//Else, try to take random piece
+				else {
+					Move takeRandomPiece = takePiece();
+					if(takeRandomPiece != null)
+						move(takeRandomPiece);
+					//Else, move pawn
+					else {
+						Move pawnMove = movePawn();
+						if (pawnMove != null)
+							move(pawnMove);
+					}
+				}
+			}
+		}
 	}
 }
