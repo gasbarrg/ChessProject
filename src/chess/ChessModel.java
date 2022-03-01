@@ -491,7 +491,7 @@ public class ChessModel implements IChessModel {
 			return null;
 	}
 
-	private Move approachKing(){
+	private Move approachKing() {
 		for (int testRow = 0; testRow < 8; testRow++)
 			for (int testCol = 0; testCol < 8; testCol++) {
 				if (board[testRow][testCol] != null && !board[testRow][testCol].type().equalsIgnoreCase("King")
@@ -499,9 +499,12 @@ public class ChessModel implements IChessModel {
 					//For each black piece, look for a safe move towards king
 					for (int moveRow = 0; moveRow < 8; moveRow++)
 						for (int moveCol = 0; moveCol < 8; moveCol++) {
-
+							//TODO Approach king
+							int x = 2;
 						}
 				}
+			}
+		return null;
 	}
 
 	/**
