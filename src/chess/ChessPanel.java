@@ -301,10 +301,15 @@ public class ChessPanel extends JPanel {
                                 model.move(m);
                                 model.setNextPlayer();
                                 displayBoard();
-                                if (model.inCheck(Player.BLACK))
-                                    JOptionPane.showMessageDialog(null, "White - Check");
-                                if (model.inCheck(Player.WHITE))
-                                    JOptionPane.showMessageDialog(null, "Black - Check");
+                                //Check for Game over
+                                if (model.isComplete())
+                                    JOptionPane.showMessageDialog(null, "Game Over");
+                                else {
+                                    if (model.inCheck(Player.BLACK))
+                                        JOptionPane.showMessageDialog(null, "White - Check");
+                                    if (model.inCheck(Player.WHITE))
+                                        JOptionPane.showMessageDialog(null, "Game Over");
+                                }
                                 //Do AI moves:
                                 model.AI();
                                 displayBoard();

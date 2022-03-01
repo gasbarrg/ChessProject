@@ -381,7 +381,7 @@ public class ChessModel implements IChessModel {
 									!board[moveRow][moveCol].type().equalsIgnoreCase("Rook") &&
 									isValidMove(new Move(moveRow, moveCol, kRowWhite, kColWhite)))
 								inCheckList.add(new Move(testRow, testCol, moveRow, moveCol));
-							
+
 
 							undoMove(new Move(testRow, testCol, moveRow, moveCol));
 							//Remove old move data
@@ -513,9 +513,13 @@ public class ChessModel implements IChessModel {
 			return null;
 	}
 	/**************************************************************************/
-
-
-	private Move approachKing() {
+	/**
+	 * Method that finds a move that will not result in the piece being taken, but will also
+	 * alloww the black AI to take a piece without being taken.
+	 *
+	 * @return Move
+	 */
+	private Move safeApproachKing() {
 		//check all pieces
 		for (int testRow = 0; testRow < 8; testRow++)
 			for (int testCol = 0; testCol < 8; testCol++) {
@@ -554,20 +558,61 @@ public class ChessModel implements IChessModel {
 			return null;
 	}
 /**************************************************************************/
+	/**
+	 * Returns a move that will get any valuable piece out of danger.
+	 */
+	private Move inDangerMove() {
+		//check all pieces
+		for (int testRow = 0; testRow < 8; testRow++)
+			for (int testCol = 0; testCol < 8; testCol++) {
+				//All Black pieces that are not pawns:
+				if (board[testRow][testCol] != null && !board[testRow][testCol].type().equalsIgnoreCase("Pawn")
+						&& board[testRow][testCol].player() != Player.WHITE) {
+							if (!cantBeTaken(new Move(testRow, testCol, testRow, testCol))){
+								//If there is a valid move to their position, get a new move to safety
+								for (int moveRow = 0; moveRow < 8; moveRow++)
+									for (int moveCol = 0; moveCol < 8; moveCol++) {
+										//temp move there if valid
+										if(isValidMove(new Move(testRow,testCol,moveRow,moveCol))) {
+											move(new Move(testRow, testCol, moveRow, moveCol));
+											if (cantBeTaken(new Move(testRow, testCol, moveRow, moveCol))) {
+												randMove.add(new Move(testRow, testCol, moveRow, moveCol));
+											}
+											undoMove(new Move(testRow, testCol, moveRow, moveCol));
+											//Remove old move data
+											moveList.remove(moveList.size() - 1);
+											pieceList.remove(pieceList.size() - 1);
+										}
+									}
+							}
+						}
+				}
+		if(randMove.size() > 0) {
+			Move randomMove = randMove.get(rand.nextInt(randMove.size()));
+			randMove.clear();
+			return randomMove;
+		}
+		else
+			return null;
+	}
 
+
+/**************************************************************************/
 
 	/**
 	 * Performs A Set of actions in order:
 	 * -Tries to get out of check
 	 * -Takes the enemy king if it is in check
 	 * -Tries to put enemy king in check
+	 * -Tries to get valuable pieces out of danger
 	 * -Tries to take a piece
-	 * -Tries to move towards king
+	 * -Tries to make a safe move towards king
 	 * -Moves a random pawn
 	 */
 	public void AI() {
 		// a. Check to see if you are in check.
 		// 		i. If so, get out of check by moving the king or placing a piece to block the check
+
 		if (inCheck(Player.BLACK)) {
 			//Get King position and make a move if it is in check
 			getKingPos();
@@ -587,20 +632,26 @@ public class ChessModel implements IChessModel {
 				if (inCheckMove != null)
 					move(inCheckMove);
 				else {
-					//Else, try to take a safe piece
-					Move takeRandomPiece = takePiece();
-					if (takeRandomPiece != null)
-						move(takeRandomPiece);
-						//Else, move pawn
+					//Else, get out of danger:
+					Move inDanger = inDangerMove();
+					if (inDanger != null)
+						move(inDanger);
 					else {
-						//Else, try to make safe move to take piece
-						Move safeMove = approachKing();
-						if (safeMove != null)
-							move(safeMove);
+						//Else, try to take a safe piece
+						Move takeRandomPiece = takePiece();
+						if (takeRandomPiece != null)
+							move(takeRandomPiece);
+							//Else, move pawn
 						else {
-							Move pawnMove = movePawn();
-							if (pawnMove != null)
-								move(pawnMove);
+							//Else, try to make safe move to take piece
+							Move safeMove = safeApproachKing();
+							if (safeMove != null)
+								move(safeMove);
+							else {
+								Move pawnMove = movePawn();
+								if (pawnMove != null)
+									move(pawnMove);
+							}
 						}
 					}
 				}
