@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9707aec-1bd9-4ba7-9d7e-a3895746d64a" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="6975c745-d921-452d-adc8-6ede8289d944" name="Changes" comment="Update">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess/TestRook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/IChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/IChessModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestPawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessPrj/chess/TestPawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/TestPawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestPawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,15 +46,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Gasba\Documents\@CIS 163-05 Computer Science 2\Project2\src\chess" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="chess" />
+    </key>
   </component>
-  <component name="RunManager">
-    <configuration name="ChessGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chess.ChessGUI" />
+  <component name="RunManager" selected="JUnit.TestRook.testInvalidMove">
+    <configuration name="TestPawn.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ChessPrj" />
       <extension name="coverage">
         <pattern>
@@ -57,13 +70,84 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestPawn" />
+      <option name="METHOD_NAME" value="testCaptureMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestRook" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRook.testCaptureMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestRook" />
+      <option name="METHOD_NAME" value="testCaptureMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRook.testInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestRook" />
+      <option name="METHOD_NAME" value="testInvalidMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRook.testValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessPrj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chess" />
+      <option name="MAIN_CLASS_NAME" value="chess.TestRook" />
+      <option name="METHOD_NAME" value="testValidMove" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ChessGUI" />
+        <item itemvalue="JUnit.TestRook.testInvalidMove" />
+        <item itemvalue="JUnit.TestRook" />
+        <item itemvalue="JUnit.TestRook.testCaptureMove" />
+        <item itemvalue="JUnit.TestRook.testValidMove" />
+        <item itemvalue="JUnit.TestPawn.testCaptureMove" />
       </list>
     </recent_temporary>
   </component>
@@ -103,6 +187,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated chess piece" />
