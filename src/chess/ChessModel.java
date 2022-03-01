@@ -492,23 +492,42 @@ public class ChessModel implements IChessModel {
 	}
 
 	private Move approachKing() {
+		//check all pieces
 		for (int testRow = 0; testRow < 8; testRow++)
 			for (int testCol = 0; testCol < 8; testCol++) {
 				if (board[testRow][testCol] != null && !board[testRow][testCol].type().equalsIgnoreCase("King")
 						&& board[testRow][testCol].player() != Player.WHITE) {
-					//For each black piece, look for a safe move towards king
+					//For each black piece, look for a random move
 					for (int moveRow = 0; moveRow < 8; moveRow++)
 						for (int moveCol = 0; moveCol < 8; moveCol++) {
 							//If a valid move, temp move there
 							Move tempMove = new Move(testRow, testCol, moveRow, moveCol);
-							if (isValidMove(tempMove)
-									&& !board[testRow][testCol].type().equalsIgnoreCase("King")) {
-								move(new Move(testRow, testCol, moveRow, moveCol));
+							if (isValidMove(tempMove)) {
+								move(tempMove);
+								//If there is a piece that can be taken there w/o losing it, add move to list.
+								for (int moveRow2 = 0; moveRow2 < 8; moveRow2++)
+									for (int moveCol2 = 0; moveCol2 < 8; moveCol2++) {
+										if (isValidMove(new Move(moveRow, moveCol, moveRow2, moveCol2))
+												&& !canBeTaken(new Move(moveRow, moveCol, moveRow2, moveCol2))) {
+											randMove.add(tempMove);
+										}
+									}
+								undoMove(new Move(testRow, testCol, moveRow, moveCol));
+								//Remove old move data
+								moveList.remove(moveList.size() - 1);
+								pieceList.remove(pieceList.size() - 1);
 							}
 						}
 				}
-				return null;
+
 			}
+		if(randMove.size() > 0) {
+			Move randomMove = randMove.get(rand.nextInt(randMove.size()));
+			randMove.clear();
+			return randomMove;
+		}
+		else
+			return null;
 	}
 
 	/**
@@ -541,16 +560,21 @@ public class ChessModel implements IChessModel {
 				Move inCheckMove = putInCheck();
 				if (inCheckMove != null)
 					move(inCheckMove);
-				//Else, try to take random piece
+				//Else, try to make safe move to take piece
 				else {
-					Move takeRandomPiece = takePiece();
-					if(takeRandomPiece != null)
-						move(takeRandomPiece);
-					//Else, move pawn
+					Move safeMove = approachKing();
+					if (safeMove != null)
+						move(safeMove);
 					else {
-						Move pawnMove = movePawn();
-						if (pawnMove != null)
-							move(pawnMove);
+						Move takeRandomPiece = takePiece();
+						if (takeRandomPiece != null)
+							move(takeRandomPiece);
+							//Else, move pawn
+						else {
+							Move pawnMove = movePawn();
+							if (pawnMove != null)
+								move(pawnMove);
+						}
 					}
 				}
 			}

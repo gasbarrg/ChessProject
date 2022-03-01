@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56153583-4b12-446f-91fe-51328f560d44" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chess/ChessModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/ChessPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/TestQueen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/TestQueen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +58,7 @@
       <recent name="chess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestQueen">
+  <component name="RunManager" selected="Application.ChessGUI">
     <configuration name="ChessGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess.ChessGUI" />
       <module name="ChessPrj" />
@@ -168,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChessGUI" />
         <item itemvalue="JUnit.TestQueen" />
         <item itemvalue="JUnit.TestQueen.testCaptureMove" />
         <item itemvalue="JUnit.TestQueen.testInvalidMove" />
         <item itemvalue="JUnit.TestQueen.testValidMove" />
-        <item itemvalue="Application.ChessGUI" />
       </list>
     </recent_temporary>
   </component>
