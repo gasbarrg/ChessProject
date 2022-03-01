@@ -312,6 +312,7 @@ public class ChessPanel extends JPanel {
                                         JOptionPane.showMessageDialog(null, "Black - Check");
                                 }
                             }
+                            //Do AI moves:
                             model.AI();
                             displayBoard();
                         }
