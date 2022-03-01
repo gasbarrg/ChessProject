@@ -472,7 +472,7 @@ public class ChessModel implements IChessModel {
 									&& board[moveRow][moveCol] != null
 									&& board[moveRow][moveCol].player() == Player.WHITE){
 								//If it can't be taken, add move to list
-								if (!canBeTaken(new Move(moveRow, moveCol, kRowWhite, kColWhite)))
+								if (!canBeTaken(tempMove))
 									randMove.add(tempMove);
 								//Else, add it to the list as long as its not a
 								else if (!board[moveRow][moveCol].type().equalsIgnoreCase("Queen")
@@ -499,12 +499,16 @@ public class ChessModel implements IChessModel {
 					//For each black piece, look for a safe move towards king
 					for (int moveRow = 0; moveRow < 8; moveRow++)
 						for (int moveCol = 0; moveCol < 8; moveCol++) {
-							//TODO Approach king
-							int x = 2;
+							//If a valid move, temp move there
+							Move tempMove = new Move(testRow, testCol, moveRow, moveCol);
+							if (isValidMove(tempMove)
+									&& !board[testRow][testCol].type().equalsIgnoreCase("King")) {
+								move(new Move(testRow, testCol, moveRow, moveCol));
+							}
 						}
 				}
+				return null;
 			}
-		return null;
 	}
 
 	/**

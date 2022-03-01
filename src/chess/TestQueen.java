@@ -55,7 +55,7 @@ public class TestQueen {
     }
     @Test
     public void testInvalidMove(){
-        //set Bishop  position
+        //set Queen  position
         board[3][3] = whiteQueen;
         board[3][5] = whiteQueen;
         //Test if you can move into own piece
@@ -68,7 +68,7 @@ public class TestQueen {
     }
     @Test
     public void testCaptureMove(){
-        //set Bishop  position
+        //set Queen  position
         board[1][5] = blackQueen;
         board[3][3] = whiteQueen;
         //Test if you can move onto back piece to capture
