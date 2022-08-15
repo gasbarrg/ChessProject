@@ -3,7 +3,7 @@
 Chess GUI with basic robot opponent. Coded in Java for CIS 163 Final project @ GVSU in Winter 2021 / 2022. 
 
 # Gameplay  
-
+ChessModel.java  
 To begin, click any piece on the white side. All avalible moves will be shown. Click again in the desired location to confirm the move.  
 Click the "undo" button at any time to undo robot and player moves. 
 
