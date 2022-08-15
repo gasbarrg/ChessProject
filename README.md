@@ -1,5 +1,5 @@
 # ♙  ♔  ♕  ♗  ♘  ♖ Overview ♙  ♔  ♕  ♗  ♘  ♖ 
-
+![alt text](https://github.com/gasbarrg/ChessProject/blob/main/screenshots/chess1.png)
 Chess GUI with basic robot opponent. Coded in Java for CIS 163 Final project @ GVSU in Winter 2021 / 2022. 
 
 # Gameplay  
