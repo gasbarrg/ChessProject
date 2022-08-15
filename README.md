@@ -1,5 +1,6 @@
 # ♙  ♔  ♕  ♗  ♘  ♖ Overview ♙  ♔  ♕  ♗  ♘  ♖ 
-![alt text](https://github.com/gasbarrg/ChessProject/blob/main/screenshots/chess1.png)
+![alt text](https://github.com/gasbarrg/ChessProject/blob/main/screenshots/chess1.png)    
+  
 Chess GUI with basic robot opponent. Coded in Java for CIS 163 Final project @ GVSU in Winter 2021 / 2022. 
 
 # Gameplay  
@@ -19,3 +20,5 @@ Robot order of actions (only one will be chosen, with the most important moves t
   * -Tries to take a piece  
   * -Tries to make a safe move towards king  
   * -Moves a random pawn  
+
+![alt text](https://github.com/gasbarrg/ChessProject/blob/main/screenshots/chess2.png)   
